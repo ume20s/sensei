@@ -5,7 +5,9 @@ using UnityEngine;
 public class ballCtrl : MonoBehaviour
 {
     // 変数もろもろ
-    public float speed = 5.0f;        // ボールの速さ
+    public float speed = 5.0f;          // ボールの速さ
+    public float minSpeed = 5.0f;       // ボール速さの範囲 
+    public float maxSpeed = 15.0f;
 
     // リジッドボディコンポーネント
     Rigidbody Rigid;
@@ -23,6 +25,11 @@ public class ballCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // 現在の速さを取得
+        Vector3 velocity = Rigid.velocity;
+        // 速さを範囲内に抑える
+        float clampedSpeed = Mathf.Clamp(velocity.magnitude, minSpeed, maxSpeed);
+        // 速度を変更
+        Rigid.velocity = velocity.normalized * clampedSpeed;
     }
 }

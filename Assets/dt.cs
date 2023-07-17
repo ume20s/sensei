@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class dt : MonoBehaviour
 {
+    // スコア関連
+    public static int score;
+
+    // ブロック名
     public static readonly string[] sLabel =
     {
         "00", "01", "02", "03",
@@ -19,7 +23,7 @@ public class dt : MonoBehaviour
         "a0", "a1", "a2", "a3"
     };
 
-
+    // ブロック位置座標
     public static readonly float[] x =
     {
         -3.6f, -1.2f, 1.2f, 3.6f,
@@ -34,7 +38,6 @@ public class dt : MonoBehaviour
         -4.2f, -2.4f, 0.0f, 2.4f, 4.2f,
         -3.6f, -1.2f, 1.2f, 3.6f
     };
-
     public static readonly float[] y =
     {
         8.00f, 8.00f, 8.00f, 8.00f,

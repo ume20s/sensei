@@ -6,6 +6,7 @@ public class paddleCtrl : MonoBehaviour
 {
     // 変数もろもろ
     public float speed = 10.0f;        // パドルの速さ
+    Vector2 target;                    // タップした位置
 
     // リジッドボディコンポーネント
     Rigidbody Rigid;
@@ -20,7 +21,24 @@ public class paddleCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 左右のキー入力により速度を変更する
-        Rigid.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, 0f, 0f);
+        // タップされていたら
+        if (Input.GetMouseButton(0))
+        {
+            // タップ位置を取得
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // 手前でタップなら操作開始
+            if(target.y < -5.0f)
+            {
+                Rigid.velocity = new Vector3((target.x - this.transform.localPosition.x) * speed, 0.0f, 0.0f);
+            }
+            // デバッグ用
+            // Debug.Log(target.x + "," + this.transform.localPosition.x);
+        }
+        // タップしていなかったらスピードゼロ
+        else
+        {
+            Rigid.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        }
     }
 }
