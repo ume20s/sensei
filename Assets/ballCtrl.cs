@@ -19,7 +19,7 @@ public class ballCtrl : MonoBehaviour
         Rigid = GetComponent<Rigidbody>();
 
         // ‰EÎ‚ß45“x‚Éi‚Ş
-        Rigid.velocity = new Vector3(speed, speed, 0f);
+        Rigid.velocity = new Vector3(speed, speed, 0.0f);
     }
 
     // Update is called once per frame

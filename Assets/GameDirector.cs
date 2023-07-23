@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameDirector : MonoBehaviour
 {
+    // 現在のステージ（０から始まっているので注意）
+    public const int stage = 0;
+
     // ゲームオブジェクト
     public GameObject blockPrefab;
     GameObject[] block = new GameObject[50];            // ブロック
