@@ -27,8 +27,15 @@ public class ballCtrl : MonoBehaviour
     {
         // Œ»İ‚Ì‘¬‚³‚ğæ“¾
         Vector3 velocity = Rigid.velocity;
+
         // ‘¬‚³‚ğ”ÍˆÍ“à‚É—}‚¦‚é
         float clampedSpeed = Mathf.Clamp(velocity.magnitude, minSpeed, maxSpeed);
+
+        // xy¬•ª‚ª¬‚³‚·‚¬‚½‚ç­‚µ‘—Ê
+        float xRatio = (velocity.x < 0.5f) ? 2.0f : 0.0f;
+        float yRatio = (velocity.y < 0.5f) ? 2.0f : 0.0f;
+        Rigid.velocity = new Vector3(velocity.x + xRatio, velocity.y + yRatio, 0);
+
         // ‘¬“x‚ğ•ÏX
         Rigid.velocity = velocity.normalized * clampedSpeed;
     }

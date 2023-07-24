@@ -8,6 +8,16 @@ public class GameDirector : MonoBehaviour
     // 現在のステージ（０から始まっているので注意）
     public const int stage = 0;
 
+    // クリア文字数
+    public const int clear = 2;
+
+    // 残りブロック数
+    public static int remainBlock;
+
+    // ゲームクリアフラグ
+    public static bool isClear = false;
+
+
     // ゲームオブジェクト
     public GameObject blockPrefab;
     GameObject[] block = new GameObject[50];            // ブロック
@@ -30,6 +40,7 @@ public class GameDirector : MonoBehaviour
         TextScore.GetComponent<Text>().text = "Score:" + dt.score.ToString("D4");
 
         // ブロックを配置
+        remainBlock = 49;
         for (int i = 0; i<49; i++)
         {
             block[i] = Instantiate(blockPrefab, new Vector3(dt.x[i], dt.y[i], 0.0f), Quaternion.identity);
@@ -41,6 +52,9 @@ public class GameDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isClear)
+        {
+
+        }
     }
 }

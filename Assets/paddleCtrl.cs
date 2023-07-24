@@ -41,4 +41,6 @@ public class paddleCtrl : MonoBehaviour
             Rigid.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         }
     }
+
+
 }

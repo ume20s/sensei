@@ -40,12 +40,15 @@ public class blockCtrl : MonoBehaviour
             int num = Random.Range(0, 2);
             
             // •¶š‚ğ¶¬
-            moji = Instantiate(mojiPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f, 0.0f), Quaternion.identity);
+            moji = Instantiate(mojiPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1.0f, 0.0f), Quaternion.identity);
 
             // •¶š”Ô†‚©‚ç•¶š‚ğƒZƒbƒg
+
             spriteRenderer = moji.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = mojiSprite[num];
-            mojiCtrl.num = num;
+
+            mojiCtrl hoge = moji.GetComponent<mojiCtrl>();
+            hoge.num = num;
         }
     }
 }
