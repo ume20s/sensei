@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class mojiCtrl : MonoBehaviour
+public class moji01Ctrl : MonoBehaviour
 {
     // 変数もろもろ
-    public int num;                                 // 文字番号
+    public int num;                                 // 自分の文字番号（生成時に設定される）
 
     // ゲームオブジェクト
-    GameObject[] TextMoji = new GameObject[6];      // 文字
+    GameObject[] TextMoji = new GameObject[2];      // 正解インジケーター文字
 
     // リジッドボディコンポーネント
     Rigidbody Rigid;
@@ -38,29 +38,32 @@ public class mojiCtrl : MonoBehaviour
             // Debug.Log(other.CompareTag("Paddle") + "," + num);
 
             // 正解文字だったら
-            if (num == dt.getMoji)
+            if (num == Stage01Director.seikai[Stage01Director.getMojiNum])
             {
                 // 正解文字色を明るくする
                 TextMoji[num].GetComponent<Text>().color = Color.yellow;
 
                 // 正解文字数を加算
-                dt.getMoji++;
+                Stage01Director.getMojiNum++;
 
                 // クリア文字数に達したら
-                if(dt.getMoji == GameDirector.clear)
+                if(Stage01Director.getMojiNum == Stage01Director.clear)
                 {
+                    // ステータスは先生クリア
+                    Stage01Director.ClearStatus = 1;
+
                     // クリアフラグをtrueに
-                    GameDirector.isClear = true;
+                    Stage01Director.isClear = true;
                 }
             }
             // 正解じゃなかったら最初から
             else
             {
-                // ゲットした文字をゼロに
-                dt.getMoji = 0;
+                // ゲットした文字番号をゼロに
+                Stage01Director.getMojiNum = 0;
 
                 // 文字色を暗くする
-                for (int i = 0; i < GameDirector.clear; i++)
+                for (int i = 0; i < Stage01Director.clear; i++)
                 {
                     TextMoji[num].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
                 }
@@ -74,4 +77,16 @@ public class mojiCtrl : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // ステージクリアだったら
+        if (Stage01Director.isClear)
+        {
+            // 自ら消滅する
+            Destroy(gameObject);
+        }
+    }
+
 }

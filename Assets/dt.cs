@@ -7,9 +7,6 @@ public class dt : MonoBehaviour
     // スコア関連
     public static int score;
 
-    // ゲットした文字番号
-    public static int getMoji;
-
     // ブロック名
     public static readonly string[] sLabel =
     {

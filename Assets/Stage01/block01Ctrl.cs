@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class blockCtrl : MonoBehaviour
+public class block01Ctrl : MonoBehaviour
 {
     // ゲームオブジェクト
     public GameObject mojiPrefab;   // 文字Prefab
@@ -28,9 +28,21 @@ public class blockCtrl : MonoBehaviour
     {
         // ブロック削除
         gameObject.SetActive(false);
+        Stage01Director.remainBlock--;
+
+        // ブロックが全部消えたらクリア
+        if(Stage01Director.remainBlock == 0)
+        {
+            // ステータスは全消しクリア
+            Stage01Director.ClearStatus = 2;
+
+            // クリアフラグをtrueに
+            Stage01Director.isClear = true;
+
+        }
 
         // スコア加算
-        dt.score += 10;
+        dt.score += Stage01Director.point;
         TextScore.GetComponent<Text>().text = "Score:" + dt.score.ToString("D4");
 
         // 1/2の確率で文字を生成
@@ -47,7 +59,7 @@ public class blockCtrl : MonoBehaviour
             spriteRenderer = moji.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = mojiSprite[num];
 
-            mojiCtrl hoge = moji.GetComponent<mojiCtrl>();
+            moji01Ctrl hoge = moji.GetComponent<moji01Ctrl>();
             hoge.num = num;
         }
     }
