@@ -69,6 +69,7 @@ public class Stage01Director : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // クリアしていたら
         if (isClear)
         {
             // ボールとパドルを消去
@@ -79,21 +80,26 @@ public class Stage01Director : MonoBehaviour
             TextSen.SetActive(false);
             TextSei.SetActive(false);
 
+            // クリアステータスによりエンディングエフェクトを変える
             switch (ClearStatus)
             {
                 case 0:
                     break;
+                    // NOTREACHED
                 
+                // 先生エンディング
                 case 1:
                     TextSenseiClear.SetActive(true);
                     break;
 
+                // 全消しエンディング
                 case 2:
                     TextAllClear.SetActive(true);
                     break;
 
                 default:
                     break;
+                    // NOTREACHED
             }
         }
     }
