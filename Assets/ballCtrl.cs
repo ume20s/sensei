@@ -12,13 +12,21 @@ public class ballCtrl : MonoBehaviour
     Rigidbody Rigid;            // リジッドボディコンポーネント
     Transform Trans;            // トランスフォームコンポーネント（位置取得用）
 
+    // 音声関連
+    AudioSource audioSource;
+    public AudioClip seKin;
+    public AudioClip seKon;
+
     // Start is called before the first frame update
     void Start()
     {
-        // コンポーネントの取得
+        // リジッドボディコンポーネントの取得
         Rigid = GetComponent<Rigidbody>();
 
-        // 自分の位置を取得
+        // 音声コンポーネントの取得
+        audioSource = GetComponent<AudioSource>();
+
+        // 自分の位置の取得
         Trans = transform;
 
         // 右斜め45度に進む
@@ -50,14 +58,27 @@ public class ballCtrl : MonoBehaviour
     // 他のオブジェクトと衝突
     void OnCollisionEnter(Collision other)
     {
-        // 衝突したのがパドルだったら衝突位置によって反射角度を変える
+        // 衝突したのがパドルだったら
         if (other.gameObject.CompareTag("Paddle"))
         {
+            // 固定物用効果音
+            audioSource.PlayOneShot(seKon);
+
+            // 衝突位置によって反射角度を変える
             Vector3 paddlePos = other.transform.position;           // パドルの位置
             Vector3 ballPos = Trans.position;                       // ボールの位置
             Vector3 direction = (ballPos - paddlePos).normalized;   // ボールの反射角度
             float speed = Rigid.velocity.magnitude;                 // 現在の速度
             Rigid.velocity = direction * speed;                     // 向きと速度を変更
+        }
+        else if(other.gameObject.CompareTag("Wall"))
+        {
+            // 固定物用効果音
+            audioSource.PlayOneShot(seKon);
+        } else
+        {
+            // 消えるブロック用効果音
+            audioSource.PlayOneShot(seKin);
         }
     }
 }

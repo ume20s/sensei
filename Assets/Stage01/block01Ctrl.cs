@@ -43,7 +43,7 @@ public class block01Ctrl : MonoBehaviour
 
         // スコア加算
         dt.score += Stage01Director.point;
-        TextScore.GetComponent<Text>().text = "Score:" + dt.score.ToString("D4");
+        TextScore.GetComponent<Text>().text = "Score:" + dt.score.ToString("D5");
 
         // 1/2の確率で文字を生成
         if(Random.Range(0, 2) == 0)
@@ -55,7 +55,6 @@ public class block01Ctrl : MonoBehaviour
             moji = Instantiate(mojiPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1.0f, 0.0f), Quaternion.identity);
 
             // 文字番号から文字をセット
-
             spriteRenderer = moji.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = mojiSprite[num];
 

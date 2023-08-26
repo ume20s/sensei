@@ -14,6 +14,14 @@ public class moji01Ctrl : MonoBehaviour
     // リジッドボディコンポーネント
     Rigidbody Rigid;
 
+    // スプライトレンダラ
+    SpriteRenderer spriteRenderer;
+
+    // 音声関連
+    AudioSource audioSource;
+    public AudioClip seKirarin;
+    public AudioClip seHenyo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +31,12 @@ public class moji01Ctrl : MonoBehaviour
 
         // リジッドボディコンポーネントの取得
         Rigid = GetComponent<Rigidbody>();
+
+        // スプライトレンダラコンポーネントの取得
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // 音声コンポーネントの取得
+        audioSource = GetComponent<AudioSource>();
 
         // 下に落ちる
         Rigid.velocity = new Vector3(0.0f, -2.5f, 0.0f);
@@ -46,8 +60,11 @@ public class moji01Ctrl : MonoBehaviour
                 // 正解文字数を加算
                 Stage01Director.getMojiNum++;
 
+                // 正解効果音
+                audioSource.PlayOneShot(seKirarin);
+
                 // クリア文字数に達したら
-                if(Stage01Director.getMojiNum == Stage01Director.clear)
+                if (Stage01Director.getMojiNum == Stage01Director.clear)
                 {
                     // ステータスは先生クリア
                     Stage01Director.ClearStatus = 1;
@@ -59,6 +76,9 @@ public class moji01Ctrl : MonoBehaviour
             // 正解じゃなかったら最初から
             else
             {
+                // 不正解効果音
+                audioSource.PlayOneShot(seHenyo);
+
                 // ゲットした文字番号をゼロに
                 Stage01Director.getMojiNum = 0;
 
@@ -68,11 +88,11 @@ public class moji01Ctrl : MonoBehaviour
                     TextMoji[num].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
                 }
             }
-            // 消える
-            Destroy(gameObject);
+            // 非表示（効果音を出すためにDestroyやSetActive(false)で消さない）
+            spriteRenderer.enabled = false;
         }
-        // 接触したのが底だったら消える
-        else if(other.CompareTag("Bottom"))
+        // 接触したのが壁だったら消える
+        else if(other.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
@@ -82,11 +102,10 @@ public class moji01Ctrl : MonoBehaviour
     void Update()
     {
         // ステージクリアだったら
-        if (Stage01Director.isClear)
+        if (Stage01Director.isMojiDestroy)
         {
-            // 自ら消滅する
+            // 文字消去
             Destroy(gameObject);
         }
     }
-
 }
