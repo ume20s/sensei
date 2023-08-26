@@ -5,8 +5,9 @@ using UnityEngine;
 public class dt : MonoBehaviour
 {
     // スコア関連
-    public static int score;
-    public static int highscore;
+    public static int Score;
+    public static int HighScore;
+    public static string SAVE_KEY = "HighScore";    // ハイスコア保存キー
 
     // ブロック名
     public static readonly string[] sLabel =

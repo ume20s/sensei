@@ -66,8 +66,9 @@ public class Stage01Director : MonoBehaviour
         TapToNext.SetActive(false);
 
         // スコア初期化
-        dt.score = 0;
-        TextScore.GetComponent<Text>().text = "Score:" + dt.score.ToString("D5");
+        dt.Score = 0;
+        TextScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
+        TextHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
 
         // ブロックを配置
         remainBlock = 49;
@@ -137,6 +138,22 @@ public class Stage01Director : MonoBehaviour
         }
     }
 
+    // ハイスコアチェック
+    private void checkHighScore()
+    {
+        // 現スコアがハイスコアを上回ったら
+        if (dt.Score > dt.HighScore)
+        {
+            // ハイスコア更新
+            dt.HighScore = dt.Score;
+            TextHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
+
+            // ハイスコア保存
+            PlayerPrefs.SetInt(dt.SAVE_KEY, dt.HighScore);
+            PlayerPrefs.Save();
+        }
+    }
+
     // ゲームスタート音声
     IEnumerator GameStart()
     {
@@ -164,8 +181,9 @@ public class Stage01Director : MonoBehaviour
                 audioSource.PlayOneShot(sePi);
 
                 // ２倍の得点をスコアに付加
-                dt.score += point * 2;
-                TextScore.GetComponent<Text>().text = "Score:" + dt.score.ToString("D5");
+                dt.Score += point * 2;
+                TextScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
+                checkHighScore();
 
                 // ブロック消去
                 block[i].SetActive(false);
