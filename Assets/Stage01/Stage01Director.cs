@@ -119,7 +119,15 @@ public class Stage01Director : MonoBehaviour
 
                 // 全消しエンディング
                 case 2:
+                    // 全消しエンディング表示
                     TextAllClear.SetActive(true);
+
+                    // ステージクリア音声
+                    audioSource.PlayOneShot(vStageClear);
+
+                    // タップして次のステージへ
+                    TapToNext.SetActive(true);
+
                     break;
 
                 default:
@@ -129,10 +137,10 @@ public class Stage01Director : MonoBehaviour
         }
     }
 
-    // ゲームスタート効果音
+    // ゲームスタート音声
     IEnumerator GameStart()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.01f);
         audioSource.PlayOneShot(vGameStart);
     }
 
@@ -142,9 +150,9 @@ public class Stage01Director : MonoBehaviour
         // 先生エンディング表示
         TextSenseiClear.SetActive(true);
 
-        // ステージクリア効果音
+        // ステージクリア音声
         audioSource.PlayOneShot(vStageClear);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.0f);
 
         // 残りブロックを得点に
         for (int i = 0; i < 49; i++)
