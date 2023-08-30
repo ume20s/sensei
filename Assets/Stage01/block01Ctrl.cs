@@ -29,7 +29,7 @@ public class block01Ctrl : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // ÉXÉRÉAâ¡éZ
-        dt.Score += Stage01Director.point;
+        dt.Score += dt.Point[dt.Stage];
         TextScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
         checkHighScore();
 

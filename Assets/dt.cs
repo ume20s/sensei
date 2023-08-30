@@ -4,6 +4,36 @@ using UnityEngine;
 
 public class dt : MonoBehaviour
 {
+    // ステージコントロール
+    public static int Stage;
+
+    // 次のステージ名
+    public static readonly string[] NextStage =
+    {
+        "GameClear",
+        "GameClear",
+        "GameClear",
+        "GameClear",
+        "GameClear",
+        "GameClear",
+        "GameClear",
+        "GameClear",
+        "GameClear"
+    };
+
+    // ステージ毎のブロックポイント
+    public static readonly int[] Point =
+    {
+        10, 20, 30, 40, 50, 60, 70, 80, 90
+    };
+
+    // ステージ毎のブロックポイント
+    public static readonly float[] MojiSpeed =
+    {
+        -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f
+    };
+
+
     // スコア関連
     public static int Score;
     public static int HighScore;

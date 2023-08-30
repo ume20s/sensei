@@ -7,7 +7,6 @@ public class Stage01Director : MonoBehaviour
 {
     // 変数もろもろ（ステージ依存）
     public const int clear = 2;             // クリア文字数
-    public const int point = 10;            // ブロック１個の得点
     public static int[] seikai = { 0, 1 };  // 正解文字番号（0:先 1:生）
 
     // 変数もろもろ（ステージ共通）
@@ -46,6 +45,9 @@ public class Stage01Director : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // ステージ設定
+        dt.Stage = 0;
+
         // ゲームオブジェクトの取得
         TextScore = GameObject.Find("textScore");
         TextHighScore = GameObject.Find("textHighScore");
@@ -181,7 +183,7 @@ public class Stage01Director : MonoBehaviour
                 audioSource.PlayOneShot(sePi);
 
                 // ２倍の得点をスコアに付加
-                dt.Score += point * 2;
+                dt.Score += dt.Point[dt.Stage] * 2;
                 TextScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
                 checkHighScore();
 

@@ -39,7 +39,7 @@ public class moji01Ctrl : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         // 下に落ちる
-        Rigid.velocity = new Vector3(0.0f, -2.5f, 0.0f);
+        Rigid.velocity = new Vector3(0.0f, dt.MojiSpeed[dt.Stage], 0.0f);
     }
 
     // 他のオブジェクトと接触

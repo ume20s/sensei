@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class taptoNextCtrl01 : MonoBehaviour
+public class taptoNextCtrl : MonoBehaviour
 {
     // タップしたら
     public void onClick()
     {
         // 次のステージへ
-        SceneManager.LoadScene("GameClear");
+        SceneManager.LoadScene(dt.NextStage[dt.Stage]);
     }
 }
