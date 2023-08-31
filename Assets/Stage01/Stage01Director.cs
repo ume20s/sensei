@@ -10,11 +10,6 @@ public class Stage01Director : MonoBehaviour
     public static int[] seikai = { 0, 1 };  // 正解文字番号（0:先 1:生）
 
     // 変数もろもろ（ステージ共通）
-    public static int remainBlock;              // 残りブロック数
-    public static int getMojiNum;               // ゲットした文字番号
-    public static bool isClear = false;         // ゲームクリアフラグ
-    public static bool isMojiDestroy = false;   // 文字消しフラグ
-    public static int ClearStatus;              // クリアステータス（1:せんせいクリア 2:全消しクリア）
 
     // 音声関連
     AudioSource audioSource;
@@ -26,12 +21,12 @@ public class Stage01Director : MonoBehaviour
     // ゲームオブジェクト
     public GameObject blockPrefab;
     GameObject[] block = new GameObject[50];            // ブロック
-    GameObject TextScore;                               // スコア文字列
-    GameObject TextHighScore;                           // ハイスコア文字列
-    GameObject TextSen;                                 // 先
-    GameObject TextSei;                                 // 生
-    GameObject TextSenseiClear;                         // 先生クリア表示
-    GameObject TextAllClear;                            // 全消しクリア表示
+    GameObject textScore;                               // スコア文字列
+    GameObject textHighScore;                           // ハイスコア文字列
+    GameObject textSen;                                 // 先
+    GameObject textSei;                                 // 生
+    GameObject textSenseiClear;                         // 先生クリア表示
+    GameObject textAllClear;                            // 全消しクリア表示
     GameObject TapToNext;                               // タップして次のステージ
     GameObject Ball;                                    // ボール
     GameObject Paddle;                                  // パドル
@@ -45,16 +40,20 @@ public class Stage01Director : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ステージ設定
+        // もろもろの変数の初期化
         dt.Stage = 0;
+        dt.isClear = false;
+        dt.clearStatus = -1;
+        dt.isMojiDestroy = false;
+        dt.getMojiNum = 0;
 
         // ゲームオブジェクトの取得
-        TextScore = GameObject.Find("textScore");
-        TextHighScore = GameObject.Find("textHighScore");
-        TextSen = GameObject.Find("textSen");
-        TextSei = GameObject.Find("textSei");
-        TextSenseiClear = GameObject.Find("textSenseiClear");
-        TextAllClear = GameObject.Find("textAllClear");
+        textScore = GameObject.Find("textScore");
+        textHighScore = GameObject.Find("textHighScore");
+        textSen = GameObject.Find("textSen");
+        textSei = GameObject.Find("textSei");
+        textSenseiClear = GameObject.Find("textSenseiClear");
+        textAllClear = GameObject.Find("textAllClear");
         TapToNext = GameObject.Find("TapToNext");
         Ball = GameObject.Find("ball");
         Paddle = GameObject.Find("paddle");
@@ -63,17 +62,17 @@ public class Stage01Director : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         // クリア表示を消しておく
-        TextSenseiClear.SetActive(false);
-        TextAllClear.SetActive(false);
+        textSenseiClear.SetActive(false);
+        textAllClear.SetActive(false);
         TapToNext.SetActive(false);
 
         // スコア初期化
         dt.Score = 0;
-        TextScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
-        TextHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
+        textScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
+        textHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
 
         // ブロックを配置
-        remainBlock = 49;
+        dt.remainBlock = 49;
         for (int i = 0; i<49; i++)
         {
             block[i] = Instantiate(blockPrefab, new Vector3(dt.x[i], dt.y[i], 0.0f), Quaternion.identity);
@@ -89,27 +88,27 @@ public class Stage01Director : MonoBehaviour
     void Update()
     {
         // クリアしていたら
-        if (isClear)
+        if (dt.isClear)
         {
             // クリアフラグfalse（多重突入を防止する）
-            isClear = false;
+            dt.isClear = false;
+
+            // 浮遊している文字を消去
+            dt.isMojiDestroy = true;
 
             // 最後の文字をゲットした効果音
             audioSource.PlayOneShot(seKirarin);
-
-            // 浮遊している文字を消去
-            isMojiDestroy = true;
 
             // ボールとパドルを消去
             Ball.SetActive(false);
             Paddle.SetActive(false);
 
             // 先生インジケータを消去
-            TextSen.SetActive(false);
-            TextSei.SetActive(false);
+            textSen.SetActive(false);
+            textSei.SetActive(false);
 
             // クリアステータスによりエンディングエフェクトを変える
-            switch (ClearStatus)
+            switch (dt.clearStatus)
             {
                 case 0:
                     break;
@@ -123,7 +122,7 @@ public class Stage01Director : MonoBehaviour
                 // 全消しエンディング
                 case 2:
                     // 全消しエンディング表示
-                    TextAllClear.SetActive(true);
+                    textAllClear.SetActive(true);
 
                     // ステージクリア音声
                     audioSource.PlayOneShot(vStageClear);
@@ -148,7 +147,7 @@ public class Stage01Director : MonoBehaviour
         {
             // ハイスコア更新
             dt.HighScore = dt.Score;
-            TextHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
+            textHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
 
             // ハイスコア保存
             PlayerPrefs.SetInt(dt.SAVE_KEY, dt.HighScore);
@@ -167,7 +166,7 @@ public class Stage01Director : MonoBehaviour
     IEnumerator SenseiEnding()
     {
         // 先生エンディング表示
-        TextSenseiClear.SetActive(true);
+        textSenseiClear.SetActive(true);
 
         // ステージクリア音声
         audioSource.PlayOneShot(vStageClear);
@@ -184,7 +183,7 @@ public class Stage01Director : MonoBehaviour
 
                 // ２倍の得点をスコアに付加
                 dt.Score += dt.Point[dt.Stage] * 2;
-                TextScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
+                textScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
                 checkHighScore();
 
                 // ブロック消去

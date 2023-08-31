@@ -5,7 +5,12 @@ using UnityEngine;
 public class dt : MonoBehaviour
 {
     // ステージコントロール
-    public static int Stage;
+    public static int Stage;                    // ステージナンバー
+    public static bool isClear;                 // クリアフラグ
+    public static int clearStatus;              // クリアステータス（1:せんせいクリア 2:全消しクリア）
+    public static bool isMojiDestroy;           // 残り浮遊文字消去フラグ
+    public static int remainBlock;              // 残りブロック数
+    public static int getMojiNum;               // ゲットした文字番号
 
     // 次のステージ名
     public static readonly string[] NextStage =
@@ -38,22 +43,6 @@ public class dt : MonoBehaviour
     public static int Score;
     public static int HighScore;
     public static string SAVE_KEY = "HighScore";    // ハイスコア保存キー
-
-    // ブロック名
-    public static readonly string[] sLabel =
-    {
-        "00", "01", "02", "03",
-        "10", "11", "12", "13", "14",
-        "20", "21", "22", "23",
-        "30", "31", "32", "33", "34",
-        "40", "41", "42", "43",
-        "50", "51", "52", "53", "54",
-        "60", "61", "62", "63",
-        "70", "71", "72", "73", "74",
-        "80", "81", "82", "83",
-        "90", "91", "92", "93", "94",
-        "a0", "a1", "a2", "a3"
-    };
 
     // ブロック位置座標
     public static readonly float[] x =

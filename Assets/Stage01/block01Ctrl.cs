@@ -8,8 +8,8 @@ public class block01Ctrl : MonoBehaviour
     // ゲームオブジェクト
     public GameObject mojiPrefab;   // 文字Prefab
     GameObject moji;                // 生成する文字オブジェクト
-    GameObject TextScore;           // スコア
-    GameObject TextHighScore;       // ハイスコア
+    GameObject textScore;           // スコア
+    GameObject textHighScore;       // ハイスコア
 
     // 文字prefabのスプライトレンダラーコンポーネント
     SpriteRenderer spriteRenderer;
@@ -21,8 +21,8 @@ public class block01Ctrl : MonoBehaviour
     void Start()
     {
         // ゲームオブジェクトの取得
-        TextScore = GameObject.Find("textScore");
-        TextHighScore = GameObject.Find("textHighScore");
+        textScore = GameObject.Find("textScore");
+        textHighScore = GameObject.Find("textHighScore");
     }
 
     // ボールがぶつかったら
@@ -30,21 +30,21 @@ public class block01Ctrl : MonoBehaviour
     {
         // スコア加算
         dt.Score += dt.Point[dt.Stage];
-        TextScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
+        textScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
         checkHighScore();
 
         // ブロック削除
         gameObject.SetActive(false);
-        Stage01Director.remainBlock--;
+        dt.remainBlock--;
 
         // ブロックが全部消えたらクリア
-        if(Stage01Director.remainBlock == 0)
+        if(dt.remainBlock == 0)
         {
             // ステータスは全消しクリア
-            Stage01Director.ClearStatus = 2;
+            dt.clearStatus = 2;
 
             // クリアフラグをtrueに
-            Stage01Director.isClear = true;
+            dt.isClear = true;
         }
 
         // 1/2の確率で文字を生成
@@ -52,8 +52,6 @@ public class block01Ctrl : MonoBehaviour
         {
             // 生成する文字番号
             int num = Random.Range(0, 2);
-            // デバッグ用
-            // Debug.Log("num= " + num);
 
             // 文字を生成
             moji = Instantiate(mojiPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1.0f, 0.0f), Quaternion.identity);
@@ -63,8 +61,8 @@ public class block01Ctrl : MonoBehaviour
             spriteRenderer.sprite = mojiSprite[num];
 
             // デバッグ用
-            Debug.Log("num = " + num);
-            Debug.Log("moji= " + spriteRenderer);
+            // Debug.Log("num = " + num);
+            // Debug.Log("moji= " + spriteRenderer);
 
             // オブジェクトで文字番号を保持する
             moji.GetComponent<moji01Ctrl>().num = num;
@@ -79,7 +77,7 @@ public class block01Ctrl : MonoBehaviour
         {
             // ハイスコア更新
             dt.HighScore = dt.Score;
-            TextHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
+            textHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
 
             // ハイスコア保存
             PlayerPrefs.SetInt(dt.SAVE_KEY, dt.HighScore);

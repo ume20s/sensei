@@ -9,7 +9,7 @@ public class moji01Ctrl : MonoBehaviour
     public int num;                                 // 自分の文字番号（生成時に設定される）
 
     // ゲームオブジェクト
-    GameObject[] TextMoji = new GameObject[2];      // 正解インジケーター文字
+    GameObject[] textMoji = new GameObject[2];      // 正解インジケーター文字
 
     // リジッドボディコンポーネント
     Rigidbody Rigid;
@@ -26,8 +26,8 @@ public class moji01Ctrl : MonoBehaviour
     void Start()
     {
         // ゲームオブジェクトの取得
-        TextMoji[0] = GameObject.Find("textSen");
-        TextMoji[1] = GameObject.Find("textSei");
+        textMoji[0] = GameObject.Find("textSen");
+        textMoji[1] = GameObject.Find("textSei");
 
         // リジッドボディコンポーネントの取得
         Rigid = GetComponent<Rigidbody>();
@@ -52,25 +52,25 @@ public class moji01Ctrl : MonoBehaviour
             // Debug.Log(other.CompareTag("Paddle") + "," + num);
 
             // 正解文字だったら
-            if (num == Stage01Director.seikai[Stage01Director.getMojiNum])
+            if (num == Stage01Director.seikai[dt.getMojiNum])
             {
                 // 正解文字色を明るくする
-                TextMoji[num].GetComponent<Text>().color = Color.yellow;
+                textMoji[num].GetComponent<Text>().color = Color.yellow;
 
                 // 正解文字数を加算
-                Stage01Director.getMojiNum++;
+                dt.getMojiNum++;
 
                 // 正解効果音
                 audioSource.PlayOneShot(seKirarin);
 
                 // クリア文字数に達したら
-                if (Stage01Director.getMojiNum == Stage01Director.clear)
+                if (dt.getMojiNum == Stage01Director.clear)
                 {
                     // ステータスは先生クリア
-                    Stage01Director.ClearStatus = 1;
+                    dt.clearStatus = 1;
 
                     // クリアフラグをtrueに
-                    Stage01Director.isClear = true;
+                    dt.isClear = true;
                 }
             }
             // 正解じゃなかったら最初から
@@ -80,12 +80,12 @@ public class moji01Ctrl : MonoBehaviour
                 audioSource.PlayOneShot(seHenyo);
 
                 // ゲットした文字番号をゼロに
-                Stage01Director.getMojiNum = 0;
+                dt.getMojiNum = 0;
 
                 // 文字色を暗くする
                 for (int i = 0; i < Stage01Director.clear; i++)
                 {
-                    TextMoji[num].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
+                    textMoji[num].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
                 }
             }
             // 非表示（効果音を出すためにDestroyやSetActive(false)で消さない）
@@ -101,8 +101,8 @@ public class moji01Ctrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ステージクリアだったら
-        if (Stage01Director.isMojiDestroy)
+        // 文字消去フラグたってたら
+        if (dt.isMojiDestroy)
         {
             // 文字消去
             Destroy(gameObject);
