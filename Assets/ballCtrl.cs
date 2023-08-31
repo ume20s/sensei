@@ -5,9 +5,9 @@ using UnityEngine;
 public class ballCtrl : MonoBehaviour
 {
     // 変数もろもろ
-    public float speed = 5.0f;          // ボールの速さ
-    public float minSpeed = 10.0f;      // ボール速さの範囲 
-    public float maxSpeed = 15.0f;
+    public float ballSpeed = 5.0f;      // ボールの速さ
+    public float minSpeed = 1.0f;      // ボール速さの範囲 
+    public float maxSpeed = 2.0f;
 
     Rigidbody Rigid;            // リジッドボディコンポーネント
     Transform Trans;            // トランスフォームコンポーネント（位置取得用）
@@ -30,7 +30,7 @@ public class ballCtrl : MonoBehaviour
         Trans = transform;
 
         // 右斜め45度に進む
-        Rigid.velocity = new Vector3(speed, speed, 0.0f);
+        Rigid.velocity = new Vector3(ballSpeed, ballSpeed, 0.0f);
     }
 
     // Update is called once per frame
@@ -75,7 +75,8 @@ public class ballCtrl : MonoBehaviour
         {
             // 固定物用効果音
             audioSource.PlayOneShot(seKon);
-        } else
+        }
+        else
         {
             // 消えるブロック用効果音
             audioSource.PlayOneShot(seKin);

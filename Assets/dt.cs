@@ -12,6 +12,11 @@ public class dt : MonoBehaviour
     public static int remainBlock;              // 残りブロック数
     public static int getMojiNum;               // ゲットした文字番号
 
+    // スコア関連
+    public static int Score;
+    public static int HighScore;
+    public static string SAVE_KEY = "HighScore";    // ハイスコア保存キー
+
     // 次のステージ名
     public static readonly string[] NextStage =
     {
@@ -32,17 +37,11 @@ public class dt : MonoBehaviour
         10, 20, 30, 40, 50, 60, 70, 80, 90
     };
 
-    // ステージ毎のブロックポイント
+    // ステージ毎の文字落下スピード
     public static readonly float[] MojiSpeed =
     {
-        -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f, -2.5f
+        -2.5f, -3.0f, -3.5f, -5.0f, -5.5f, -6.0f, -7.5f, -8.0f, -8.5f
     };
-
-
-    // スコア関連
-    public static int Score;
-    public static int HighScore;
-    public static string SAVE_KEY = "HighScore";    // ハイスコア保存キー
 
     // ブロック位置座標
     public static readonly float[] x =

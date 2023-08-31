@@ -22,6 +22,7 @@ public class GameClearCtrl : MonoBehaviour
     // ゲームクリア音声
     IEnumerator Omedetou()
     {
+        // 音声コンポーネント取得のためのタイムラグを考慮
         yield return new WaitForSeconds(0.01f);
         audioSource.PlayOneShot(vOmedetou);
     }
