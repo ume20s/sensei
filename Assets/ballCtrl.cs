@@ -16,6 +16,7 @@ public class ballCtrl : MonoBehaviour
     AudioSource audioSource;
     public AudioClip seKin;
     public AudioClip seKon;
+    public AudioClip seBreak;
 
     // Start is called before the first frame update
     void Start()

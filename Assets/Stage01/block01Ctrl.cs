@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class block01Ctrl : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class block01Ctrl : MonoBehaviour
         // ゲームオブジェクトの取得
         textScore = GameObject.Find("textScore");
         textHighScore = GameObject.Find("textHighScore");
+
+        // レイヤを手前に持ってくる
+        GetComponent<SortingGroup>().sortingOrder = 2;
     }
 
     // ボールがぶつかったら

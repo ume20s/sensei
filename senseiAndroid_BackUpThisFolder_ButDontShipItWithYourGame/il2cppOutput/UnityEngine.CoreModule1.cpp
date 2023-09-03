@@ -580,6 +580,8 @@ struct ScriptableObject_tB3BFDB921A1B1795B38A5417D3B97A89A140436A;
 struct ScriptableRuntimeReflectionSystemWrapper_t5E4ABCD6EBCCBC665EFFD6A654A6355D5744F924;
 // UnityEngine.Shader
 struct Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692;
+// UnityEngine.Rendering.SortingGroup
+struct SortingGroup_tA8DA95BF22F76688DAF54122EB3EEA35C70E9759;
 // UnityEngine.Sprite
 struct Sprite_tAFF74BC83CD68037494CB0B4F28CBDF8971CAB99;
 // UnityEngine.U2D.SpriteAtlas
@@ -5914,6 +5916,11 @@ struct RectTransform_t6C5DA5E41A89E0F488B001E45E58963480E543A5_StaticFields
 {
 	// UnityEngine.RectTransform/ReapplyDrivenProperties UnityEngine.RectTransform::reapplyDrivenProperties
 	ReapplyDrivenProperties_t3482EA130A01FF7EE2EEFE37F66A5215D08CFE24* ___reapplyDrivenProperties_4;
+};
+
+// UnityEngine.Rendering.SortingGroup
+struct SortingGroup_tA8DA95BF22F76688DAF54122EB3EEA35C70E9759  : public Behaviour_t01970CFBBA658497AE30F311C447DB0440BAB7FA
+{
 };
 
 // UnityEngine.SpriteRenderer
@@ -21492,6 +21499,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE0
 {
 	typedef JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*FunctionPointerType) (RuntimeObject*, BatchRendererGroup_t452089ECEC9BF01E82CD6AE044B6D75B8CD12D10*, BatchCullingContext_t6133D8CF3B9A93AED429E017C62DC2F5BD64A659, const RuntimeMethod*);
 	return ((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___rendererGroup0, ___cullingContext1, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Void UnityEngine.Rendering.SortingGroup::set_sortingOrder(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SortingGroup_set_sortingOrder_mCF2E58694FBCF9DC66770A445A36D86339A72016 (SortingGroup_tA8DA95BF22F76688DAF54122EB3EEA35C70E9759* __this, int32_t ___value0, const RuntimeMethod* method) 
+{
+	typedef void (*SortingGroup_set_sortingOrder_mCF2E58694FBCF9DC66770A445A36D86339A72016_ftn) (SortingGroup_tA8DA95BF22F76688DAF54122EB3EEA35C70E9759*, int32_t);
+	static SortingGroup_set_sortingOrder_mCF2E58694FBCF9DC66770A445A36D86339A72016_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (SortingGroup_set_sortingOrder_mCF2E58694FBCF9DC66770A445A36D86339A72016_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Rendering.SortingGroup::set_sortingOrder(System.Int32)");
+	_il2cpp_icall_func(__this, ___value0);
 }
 #ifdef __clang__
 #pragma clang diagnostic pop

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7711246064840874080}
   - component: {fileID: 2335296020013413378}
   - component: {fileID: 374067955067221161}
+  - component: {fileID: 7840762255921368350}
   m_Layer: 0
   m_Name: block01Prefab
   m_TagString: Untagged
@@ -115,3 +116,14 @@ MonoBehaviour:
   mojiSprite:
   - {fileID: 21300000, guid: a25472415843d3448aaaffba12816da1, type: 3}
   - {fileID: 21300000, guid: 202ca7c574eaf654aa31754a477d8668, type: 3}
+--- !u!210 &7840762255921368350
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108858869616093706}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

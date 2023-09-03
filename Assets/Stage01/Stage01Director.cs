@@ -20,7 +20,7 @@ public class Stage01Director : MonoBehaviour
 
     // ゲームオブジェクト
     public GameObject blockPrefab;
-    GameObject[] block = new GameObject[50];            // ブロック
+    GameObject[] block = new GameObject[49];            // ブロック
     GameObject textScore;                               // スコア文字列
     GameObject textHighScore;                           // ハイスコア文字列
     GameObject textSen;                                 // 先
@@ -34,8 +34,8 @@ public class Stage01Director : MonoBehaviour
     // ブロックprefabのスプライトレンダラーコンポーネント
     SpriteRenderer spriteRenderer;
 
-    // せんせいスプライト
-    public Sprite[] senseiSprite = new Sprite[50];
+    // ブロックスプライト
+    public Sprite[] blockSprite = new Sprite[49];
 
     // Start is called before the first frame update
     void Start()
@@ -77,7 +77,7 @@ public class Stage01Director : MonoBehaviour
         {
             block[i] = Instantiate(blockPrefab, new Vector3(dt.x[i], dt.y[i], 0.0f), Quaternion.identity);
             spriteRenderer = block[i].GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = senseiSprite[i];
+            spriteRenderer.sprite = blockSprite[i];
         }
 
         // ゲーム開始音声
