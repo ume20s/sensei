@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Stage01Director : MonoBehaviour
 {
     // 変数もろもろ（ステージ依存）
-    public const int clear = 2;             // クリア文字数
     public static int[] seikai = { 0, 1 };  // 正解文字番号（0:先 1:生）
 
     // 変数もろもろ（ステージ共通）
@@ -129,7 +128,6 @@ public class Stage01Director : MonoBehaviour
 
                     // タップして次のステージへ
                     TapToNext.SetActive(true);
-
                     break;
 
                 default:
@@ -173,7 +171,7 @@ public class Stage01Director : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
 
         // 残りブロックを得点に
-        for (int i = 0; i < 49; i++)
+        for (int i = 48; i >= 0; i--)
         {
             // ブロックがアクティブだったら
             if (block[i].activeSelf)

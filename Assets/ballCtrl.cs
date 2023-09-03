@@ -5,18 +5,17 @@ using UnityEngine;
 public class ballCtrl : MonoBehaviour
 {
     // 変数もろもろ
-    public float ballSpeed = 5.0f;      // ボールの速さ
-    public float minSpeed = 1.0f;      // ボール速さの範囲 
-    public float maxSpeed = 2.0f;
+    float ballSpeed = 5.0f;        // ボールの速さ
+    float minSpeed = 5.0f;          // ボール速さの範囲 
+    float maxSpeed = 15.0f;
 
-    Rigidbody Rigid;            // リジッドボディコンポーネント
-    Transform Trans;            // トランスフォームコンポーネント（位置取得用）
+    Rigidbody Rigid;                // リジッドボディコンポーネント
+    Transform Trans;                // トランスフォームコンポーネント（位置取得用）
 
     // 音声関連
     AudioSource audioSource;
     public AudioClip seKin;
     public AudioClip seKon;
-    public AudioClip seBreak;
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +40,19 @@ public class ballCtrl : MonoBehaviour
         Vector3 velocity = Rigid.velocity;
 
         // デバッグ用
-        // Debug.Log(velocity);
+        // Debug.Log(Trans.position.y);
 
         // 速度のｙ成分が少なかったら盛る（千日手対策）
         if(velocity.y < 1.0f && velocity.y > -1.0f)
         {
-            velocity.y = 1.0f;
+            if(Trans.position.y > 0)    // ボール位置が上半分だったら
+            {
+                velocity.y = -1.0f;     // 下に盛る
+            }
+            else                        // 下半分だったら
+            {
+                velocity.y = 1.0f;      // 上に盛る
+            }
         }
 
         // 速さを範囲内に抑える

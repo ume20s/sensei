@@ -51,11 +51,11 @@ public class block01Ctrl : MonoBehaviour
             dt.isClear = true;
         }
 
-        // 1/2の確率で文字を生成
-        if (Random.Range(0, 2) == 0)
+        // ステージ設定毎の確率で文字が発生
+        if (Random.Range(0, 100) < dt.mojiProbabirity[dt.Stage])
         {
             // 生成する文字番号
-            int num = Random.Range(0, 2);
+            int num = Random.Range(0, dt.mojiSyurui[dt.Stage]);
 
             // 文字を生成
             moji = Instantiate(mojiPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1.0f, 0.0f), Quaternion.identity);

@@ -12,6 +12,7 @@ public class dt : MonoBehaviour
     public static int remainBlock;              // 残りブロック数
     public static int getMojiNum;               // ゲットした文字番号
 
+
     // スコア関連
     public static int Score;
     public static int HighScore;
@@ -29,6 +30,38 @@ public class dt : MonoBehaviour
         "GameClear",
         "GameClear",
         "GameClear"
+    };
+
+    // ステージ毎のクリアに必要な文字数
+    public static readonly int[] clearMojiNum =
+    {
+        2, 4, 6, 2, 4, 6, 2, 4, 6
+    };
+
+    // ステージ毎のクリア文字列
+    public static readonly int[,] seikaiMoji =
+    {
+        { 0, 1, 0, 0, 0, 0 },   // 先生
+        { 0, 1, 0, 2, 0, 0 },   // せんせい
+        { 0, 1, 2, 0, 1, 3 },   // SENSEI
+        { 0, 1, 0, 0, 0, 0 },
+        { 0, 1, 0, 2, 0, 0 },
+        { 0, 1, 2, 0, 1, 3 },
+        { 0, 1, 0, 0, 0, 0 },
+        { 0, 1, 0, 2, 0, 0 },
+        { 0, 1, 2, 0, 1, 3 }
+    };
+
+    // ステージ毎の文字発生確率
+    public static readonly int[] mojiProbabirity =
+    {
+        50, 55, 60, 60, 60, 60, 70, 70, 70
+    };
+
+    // ステージ毎の発生する文字種数
+    public static readonly int[] mojiSyurui =
+    {
+        2, 3, 4, 4, 6, 8, 6, 9, 12
     };
 
     // ステージ毎のブロックポイント

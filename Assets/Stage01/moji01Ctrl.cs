@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class moji01Ctrl : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class moji01Ctrl : MonoBehaviour
         // 音声コンポーネントの取得
         audioSource = GetComponent<AudioSource>();
 
+        // レイヤを手前に持ってくる
+        GetComponent<SortingGroup>().sortingOrder = 3;
+
         // 下に落ちる
         Rigid.velocity = new Vector3(0.0f, dt.MojiSpeed[dt.Stage], 0.0f);
     }
@@ -52,7 +56,7 @@ public class moji01Ctrl : MonoBehaviour
             // Debug.Log(other.CompareTag("Paddle") + "," + num);
 
             // 正解文字だったら
-            if (num == Stage01Director.seikai[dt.getMojiNum])
+            if (num == dt.seikaiMoji[dt.Stage, dt.getMojiNum])
             {
                 // 正解文字色を明るくする
                 textMoji[num].GetComponent<Text>().color = Color.yellow;
@@ -64,7 +68,7 @@ public class moji01Ctrl : MonoBehaviour
                 audioSource.PlayOneShot(seKirarin);
 
                 // クリア文字数に達したら
-                if (dt.getMojiNum == Stage01Director.clear)
+                if (dt.getMojiNum == dt.clearMojiNum[dt.Stage])
                 {
                     // ステータスは先生クリア
                     dt.clearStatus = 1;
@@ -83,7 +87,7 @@ public class moji01Ctrl : MonoBehaviour
                 dt.getMojiNum = 0;
 
                 // 文字色を暗くする
-                for (int i = 0; i < Stage01Director.clear; i++)
+                for (int i = 0; i < dt.clearMojiNum[dt.Stage]; i++)
                 {
                     textMoji[num].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
                 }
