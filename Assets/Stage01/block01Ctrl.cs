@@ -16,7 +16,7 @@ public class block01Ctrl : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     // 文字スプライト
-    public Sprite[] mojiSprite = new Sprite[2];
+    public Sprite[] mojiSprite = new Sprite[6];
 
     // Start is called before the first frame update
     void Start()

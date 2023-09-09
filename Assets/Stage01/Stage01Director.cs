@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class Stage01Director : MonoBehaviour
 {
-    // 変数もろもろ（ステージ依存）
-    public static int[] seikai = { 0, 1 };  // 正解文字番号（0:先 1:生）
-
-    // 変数もろもろ（ステージ共通）
-
     // 音声関連
     AudioSource audioSource;
     public AudioClip vGameStart;
@@ -22,8 +17,7 @@ public class Stage01Director : MonoBehaviour
     GameObject[] block = new GameObject[49];            // ブロック
     GameObject textScore;                               // スコア文字列
     GameObject textHighScore;                           // ハイスコア文字列
-    GameObject textSen;                                 // 先
-    GameObject textSei;                                 // 生
+    GameObject[] textMoji = new GameObject[2];          // 正解インジケーター文字
     GameObject textSenseiClear;                         // 先生クリア表示
     GameObject textAllClear;                            // 全消しクリア表示
     GameObject TapToNext;                               // タップして次のステージ
@@ -49,8 +43,8 @@ public class Stage01Director : MonoBehaviour
         // ゲームオブジェクトの取得
         textScore = GameObject.Find("textScore");
         textHighScore = GameObject.Find("textHighScore");
-        textSen = GameObject.Find("textSen");
-        textSei = GameObject.Find("textSei");
+        textMoji[0] = GameObject.Find("textSen");
+        textMoji[1] = GameObject.Find("textSei");
         textSenseiClear = GameObject.Find("textSenseiClear");
         textAllClear = GameObject.Find("textAllClear");
         TapToNext = GameObject.Find("TapToNext");
@@ -103,8 +97,8 @@ public class Stage01Director : MonoBehaviour
             Paddle.SetActive(false);
 
             // 先生インジケータを消去
-            textSen.SetActive(false);
-            textSei.SetActive(false);
+            textMoji[0].SetActive(false);
+            textMoji[1].SetActive(false);
 
             // クリアステータスによりエンディングエフェクトを変える
             switch (dt.clearStatus)

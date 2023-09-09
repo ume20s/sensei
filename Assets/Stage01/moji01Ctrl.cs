@@ -89,7 +89,7 @@ public class moji01Ctrl : MonoBehaviour
                 // 文字色を暗くする
                 for (int i = 0; i < dt.clearMojiNum[dt.Stage]; i++)
                 {
-                    textMoji[num].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
+                    textMoji[i].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
                 }
             }
             // 非表示（効果音を出すためにDestroyやSetActive(false)で消さない）

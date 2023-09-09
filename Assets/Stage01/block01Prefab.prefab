@@ -116,6 +116,10 @@ MonoBehaviour:
   mojiSprite:
   - {fileID: 21300000, guid: a25472415843d3448aaaffba12816da1, type: 3}
   - {fileID: 21300000, guid: 202ca7c574eaf654aa31754a477d8668, type: 3}
+  - {fileID: 21300000, guid: 73c89ccae932583418ca6482a6f77066, type: 3}
+  - {fileID: 21300000, guid: 409136e11555b624188290b1896ad610, type: 3}
+  - {fileID: 21300000, guid: dfffd7d4343f7584ea3be95df78fe14d, type: 3}
+  - {fileID: 21300000, guid: 6dc90776b0f77a04588b055227ede2a6, type: 3}
 --- !u!210 &7840762255921368350
 SortingGroup:
   m_ObjectHideFlags: 0
