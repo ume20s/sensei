@@ -776,11 +776,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c71a4fa90dfe9e947bb4e26a9400f278, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1212,9 +1212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8394331aee0e8e1418ea043f2720ea6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 5
-  minSpeed: 5
-  maxSpeed: 10
   seKin: {fileID: 8300000, guid: 56135f7a983215744b31adf7aaf88a61, type: 3}
   seKon: {fileID: 8300000, guid: 08b036696d4a41841a0ed8237d6a376c, type: 3}
 --- !u!54 &1294164304

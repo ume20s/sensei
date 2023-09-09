@@ -89,6 +89,9 @@ public class Stage01Director : MonoBehaviour
             // 浮遊している文字を消去
             dt.isMojiDestroy = true;
 
+            // BGMをオフ
+            audioSource.Stop();
+
             // 最後の文字をゲットした効果音
             audioSource.PlayOneShot(seKirarin);
 

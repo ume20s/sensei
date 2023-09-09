@@ -6,8 +6,8 @@ public class ballCtrl : MonoBehaviour
 {
     // 変数もろもろ
     float ballSpeed = 5.0f;        // ボールの速さ
-    float minSpeed = 5.0f;          // ボール速さの範囲 
-    float maxSpeed = 15.0f;
+    float minSpeed = 10.0f;          // ボール速さの範囲 
+    float maxSpeed = 20.0f;
 
     Rigidbody Rigid;                // リジッドボディコンポーネント
     Transform Trans;                // トランスフォームコンポーネント（位置取得用）

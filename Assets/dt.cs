@@ -21,8 +21,8 @@ public class dt : MonoBehaviour
     // 次のステージ名
     public static readonly string[] NextStage =
     {
-        "GameClear",
-        "GameClear",
+        "stage02",
+        "stage03",
         "GameClear",
         "GameClear",
         "GameClear",
