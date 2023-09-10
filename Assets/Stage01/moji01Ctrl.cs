@@ -59,7 +59,7 @@ public class moji01Ctrl : MonoBehaviour
             if (num == dt.seikaiMoji[dt.Stage, dt.getMojiNum])
             {
                 // 正解文字色を明るくする
-                textMoji[num].GetComponent<Text>().color = Color.yellow;
+                textMoji[dt.getMojiNum].GetComponent<Text>().color = Color.yellow;
 
                 // 正解文字数を加算
                 dt.getMojiNum++;
@@ -90,6 +90,16 @@ public class moji01Ctrl : MonoBehaviour
                 for (int i = 0; i < dt.clearMojiNum[dt.Stage]; i++)
                 {
                     textMoji[i].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
+                }
+
+                // 残りブロックが（必要文字数－ゲットしている文字数）より小さかったらゲームオーバー
+                if (dt.remainBlock < dt.clearMojiNum[dt.Stage] - dt.getMojiNum)
+                {
+                    // ステータスは全消しクリア
+                    dt.clearStatus = 2;
+
+                    // クリアフラグをtrueに
+                    dt.isClear = true;
                 }
             }
             // 非表示（効果音を出すためにDestroyやSetActive(false)で消さない）

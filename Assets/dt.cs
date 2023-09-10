@@ -55,7 +55,7 @@ public class dt : MonoBehaviour
     // ステージ毎の文字発生確率
     public static readonly int[] mojiProbabirity =
     {
-        50, 55, 60, 60, 60, 60, 70, 70, 70
+        50, 60, 70, 70, 80, 90, 80, 90, 100
     };
 
     // ステージ毎の発生する文字種数

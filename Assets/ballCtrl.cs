@@ -43,15 +43,15 @@ public class ballCtrl : MonoBehaviour
         // Debug.Log(Trans.position.y);
 
         // 速度のｙ成分が少なかったら盛る（千日手対策）
-        if(velocity.y < 1.0f && velocity.y > -1.0f)
+        if(velocity.y < 2.0f && velocity.y > -2.0f)
         {
             if(Trans.position.y > 0)    // ボール位置が上半分だったら
             {
-                velocity.y = -1.0f;     // 下に盛る
+                velocity.y = -2.0f;     // 下に盛る
             }
             else                        // 下半分だったら
             {
-                velocity.y = 1.0f;      // 上に盛る
+                velocity.y = 2.0f;      // 上に盛る
             }
         }
 

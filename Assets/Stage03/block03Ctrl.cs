@@ -41,8 +41,8 @@ public class block03Ctrl : MonoBehaviour
         gameObject.SetActive(false);
         dt.remainBlock--;
 
-        // ブロックが全部消えたらクリア
-        if(dt.remainBlock == 0)
+        // 残りブロックが（必要文字数－ゲットしている文字数）より小さかったらゲームオーバー
+        if (dt.remainBlock < dt.clearMojiNum[dt.Stage] - dt.getMojiNum)
         {
             // ステータスは全消しクリア
             dt.clearStatus = 2;

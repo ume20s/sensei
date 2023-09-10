@@ -9,6 +9,7 @@ public class Stage03Director : MonoBehaviour
     AudioSource audioSource;
     public AudioClip vGameStart;
     public AudioClip vStageClear;
+    public AudioClip vGameOver;
     public AudioClip sePi;
     public AudioClip seKirarin;
 
@@ -19,8 +20,9 @@ public class Stage03Director : MonoBehaviour
     GameObject textHighScore;                           // ハイスコア文字列
     GameObject[] textMoji = new GameObject[6];          // 正解インジケーター文字
     GameObject textSenseiClear;                         // 先生クリア表示
-    GameObject textAllClear;                            // 全消しクリア表示
+    GameObject textGameOver;                            // ゲームオーバー表示
     GameObject TapToNext;                               // タップして次のステージ
+    GameObject TapToFirst;                              // タップして最初のステージ
     GameObject Ball;                                    // ボール
     GameObject Paddle;                                  // パドル
 
@@ -50,8 +52,9 @@ public class Stage03Director : MonoBehaviour
         textMoji[4] = GameObject.Find("textE2");
         textMoji[5] = GameObject.Find("textI");
         textSenseiClear = GameObject.Find("textSenseiClear");
-        textAllClear = GameObject.Find("textAllClear");
+        textGameOver = GameObject.Find("textGameOver");
         TapToNext = GameObject.Find("TapToNext");
+        TapToFirst = GameObject.Find("TapToFirst");
         Ball = GameObject.Find("ball");
         Paddle = GameObject.Find("paddle");
 
@@ -60,8 +63,9 @@ public class Stage03Director : MonoBehaviour
 
         // クリア表示を消しておく
         textSenseiClear.SetActive(false);
-        textAllClear.SetActive(false);
+        textGameOver.SetActive(false);
         TapToNext.SetActive(false);
+        TapToFirst.SetActive(false);
 
         // スコア初期化
         textScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
@@ -102,12 +106,6 @@ public class Stage03Director : MonoBehaviour
             Ball.SetActive(false);
             Paddle.SetActive(false);
 
-            // 先生インジケータを消去
-            for(int i=0; i<6; i++)
-            {
-                textMoji[i].SetActive(false);
-            }
-
             // クリアステータスによりエンディングエフェクトを変える
             switch (dt.clearStatus)
             {
@@ -120,16 +118,16 @@ public class Stage03Director : MonoBehaviour
                     StartCoroutine("SenseiEnding");
                     break;
 
-                // 全消しエンディング
+                // ゲームオーバー
                 case 2:
-                    // 全消しエンディング表示
-                    textAllClear.SetActive(true);
+                    // ゲームオーバー表示
+                    textGameOver.SetActive(true);
 
-                    // ステージクリア音声
-                    audioSource.PlayOneShot(vStageClear);
+                    // ゲームオーバー音声
+                    audioSource.PlayOneShot(vGameOver);
 
-                    // タップして次のステージへ
-                    TapToNext.SetActive(true);
+                    // タップして最初のステージへ
+                    TapToFirst.SetActive(true);
                     break;
 
                 default:
@@ -165,6 +163,12 @@ public class Stage03Director : MonoBehaviour
     // 先生エンディング
     IEnumerator SenseiEnding()
     {
+        // 先生インジケータを消去
+        for (int i = 0; i < 6; i++)
+        {
+            textMoji[i].SetActive(false);
+        }
+
         // 先生エンディング表示
         textSenseiClear.SetActive(true);
 
