@@ -52,9 +52,6 @@ public class moji01Ctrl : MonoBehaviour
         // 接触したのがパドルだったら
         if (other.CompareTag("Paddle"))
         {
-            // デバッグ用
-            // Debug.Log(other.CompareTag("Paddle") + "," + num);
-
             // 正解文字だったら
             if (num == dt.seikaiMoji[dt.Stage, dt.getMojiNum])
             {
