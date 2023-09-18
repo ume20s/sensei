@@ -5,44 +5,44 @@ using UnityEngine.UI;
 
 public class Stage02Director : MonoBehaviour
 {
-    // ‰¹ºŠÖ˜A
+    // éŸ³å£°é–¢é€£
     AudioSource audioSource;
     public AudioClip vGameStart;
-    public AudioClip vStageClear;
+    public AudioClip[] vStageClear = new AudioClip[3];
     public AudioClip vGameOver;
     public AudioClip sePi;
     public AudioClip seKirarin;
 
-    // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg
+    // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     public GameObject blockPrefab;
-    GameObject[] block = new GameObject[49];            // ƒuƒƒbƒN
-    GameObject textScore;                               // ƒXƒRƒA•¶š—ñ
-    GameObject textHighScore;                           // ƒnƒCƒXƒRƒA•¶š—ñ
-    GameObject[] textMoji = new GameObject[4];          // ³‰ğƒCƒ“ƒWƒP[ƒ^[•¶š
-    GameObject textSenseiClear;                         // æ¶ƒNƒŠƒA•\¦
-    GameObject textGameOver;                            // ƒQ[ƒ€ƒI[ƒo[•\¦
-    GameObject TapToNext;                               // ƒ^ƒbƒv‚µ‚ÄŸ‚ÌƒXƒe[ƒW
-    GameObject TapToFirst;                              // ƒ^ƒbƒv‚µ‚ÄÅ‰‚ÌƒXƒe[ƒW
-    GameObject Ball;                                    // ƒ{[ƒ‹
-    GameObject Paddle;                                  // ƒpƒhƒ‹
+    GameObject[] block = new GameObject[49];            // ãƒ–ãƒ­ãƒƒã‚¯
+    GameObject textScore;                               // ã‚¹ã‚³ã‚¢æ–‡å­—åˆ—
+    GameObject textHighScore;                           // ãƒã‚¤ã‚¹ã‚³ã‚¢æ–‡å­—åˆ—
+    GameObject[] textMoji = new GameObject[4];          // æ­£è§£ã‚¤ãƒ³ã‚¸ã‚±ãƒ¼ã‚¿ãƒ¼æ–‡å­—
+    GameObject textSenseiClear;                         // å…ˆç”Ÿã‚¯ãƒªã‚¢è¡¨ç¤º
+    GameObject textGameOver;                            // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼è¡¨ç¤º
+    GameObject TapToNext;                               // ã‚¿ãƒƒãƒ—ã—ã¦æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸
+    GameObject TapToFirst;                              // ã‚¿ãƒƒãƒ—ã—ã¦æœ€åˆã®ã‚¹ãƒ†ãƒ¼ã‚¸
+    GameObject Ball;                                    // ãƒœãƒ¼ãƒ«
+    GameObject Paddle;                                  // ãƒ‘ãƒ‰ãƒ«
 
-    // ƒuƒƒbƒNprefab‚ÌƒXƒvƒ‰ƒCƒgƒŒƒ“ƒ_ƒ‰[ƒRƒ“ƒ|[ƒlƒ“ƒg
+    // ãƒ–ãƒ­ãƒƒã‚¯prefabã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
     SpriteRenderer spriteRenderer;
 
-    // ƒuƒƒbƒNƒXƒvƒ‰ƒCƒg
+    // ãƒ–ãƒ­ãƒƒã‚¯ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
     public Sprite[] blockSprite = new Sprite[49];
 
     // Start is called before the first frame update
     void Start()
     {
-        // ‚à‚ë‚à‚ë‚Ì•Ï”‚Ì‰Šú‰»
+        // ã‚‚ã‚ã‚‚ã‚ã®å¤‰æ•°ã®åˆæœŸåŒ–
         dt.Stage = 1;
         dt.isClear = false;
         dt.clearStatus = -1;
         dt.isMojiDestroy = false;
         dt.getMojiNum = 0;
 
-        // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ìæ“¾
+        // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—
         textScore = GameObject.Find("textScore");
         textHighScore = GameObject.Find("textHighScore");
         textMoji[0] = GameObject.Find("textSe1");
@@ -56,20 +56,20 @@ public class Stage02Director : MonoBehaviour
         Ball = GameObject.Find("ball");
         Paddle = GameObject.Find("paddle");
 
-        // ‰¹ºƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // éŸ³å£°ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         audioSource = GetComponent<AudioSource>();
 
-        // ƒNƒŠƒA•\¦‚ğÁ‚µ‚Ä‚¨‚­
+        // ã‚¯ãƒªã‚¢è¡¨ç¤ºã‚’æ¶ˆã—ã¦ãŠã
         textSenseiClear.SetActive(false);
         textGameOver.SetActive(false);
         TapToNext.SetActive(false);
         TapToFirst.SetActive(false);
 
-        // ƒXƒRƒA‰Šú‰»
+        // ã‚¹ã‚³ã‚¢åˆæœŸåŒ–
         textScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
         textHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
 
-        // ƒuƒƒbƒN‚ğ”z’u
+        // ãƒ–ãƒ­ãƒƒã‚¯ã‚’é…ç½®
         dt.remainBlock = 49;
         for (int i = 0; i<49; i++)
         {
@@ -78,53 +78,53 @@ public class Stage02Director : MonoBehaviour
             spriteRenderer.sprite = blockSprite[i];
         }
 
-        // ƒQ[ƒ€ŠJn‰¹º
+        // ã‚²ãƒ¼ãƒ é–‹å§‹éŸ³å£°
         StartCoroutine("GameStart");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ƒNƒŠƒA‚µ‚Ä‚¢‚½‚ç
+        // ã‚¯ãƒªã‚¢ã—ã¦ã„ãŸã‚‰
         if (dt.isClear)
         {
-            // ƒNƒŠƒAƒtƒ‰ƒOfalsei‘½d“Ë“ü‚ğ–h~‚·‚éj
+            // ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°falseï¼ˆå¤šé‡çªå…¥ã‚’é˜²æ­¢ã™ã‚‹ï¼‰
             dt.isClear = false;
 
-            // •‚—V‚µ‚Ä‚¢‚é•¶š‚ğÁ‹
+            // æµ®éŠã—ã¦ã„ã‚‹æ–‡å­—ã‚’æ¶ˆå»
             dt.isMojiDestroy = true;
 
-            // BGM‚ğƒIƒt
+            // BGMã‚’ã‚ªãƒ•
             audioSource.Stop();
 
-            // ÅŒã‚Ì•¶š‚ğƒQƒbƒg‚µ‚½Œø‰Ê‰¹
+            // æœ€å¾Œã®æ–‡å­—ã‚’ã‚²ãƒƒãƒˆã—ãŸåŠ¹æœéŸ³
             audioSource.PlayOneShot(seKirarin);
 
-            // ƒ{[ƒ‹‚Æƒpƒhƒ‹‚ğÁ‹
+            // ãƒœãƒ¼ãƒ«ã¨ãƒ‘ãƒ‰ãƒ«ã‚’æ¶ˆå»
             Ball.SetActive(false);
             Paddle.SetActive(false);
 
-            // ƒNƒŠƒAƒXƒe[ƒ^ƒX‚É‚æ‚èƒGƒ“ƒfƒBƒ“ƒOƒGƒtƒFƒNƒg‚ğ•Ï‚¦‚é
+            // ã‚¯ãƒªã‚¢ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ã‚ˆã‚Šã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å¤‰ãˆã‚‹
             switch (dt.clearStatus)
             {
                 case 0:
                     break;
                     // NOTREACHED
                 
-                // æ¶ƒGƒ“ƒfƒBƒ“ƒO
+                // å…ˆç”Ÿã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
                 case 1:
                     StartCoroutine("SenseiEnding");
                     break;
 
-                // ƒQ[ƒ€ƒI[ƒo[
+                // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
                 case 2:
-                    // ƒQ[ƒ€ƒI[ƒo[•\¦
+                    // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼è¡¨ç¤º
                     textGameOver.SetActive(true);
 
-                    // ƒQ[ƒ€ƒI[ƒo[‰¹º
+                    // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼éŸ³å£°
                     audioSource.PlayOneShot(vGameOver);
 
-                    // ƒ^ƒbƒv‚µ‚ÄÅ‰‚ÌƒXƒe[ƒW‚Ö
+                    // ã‚¿ãƒƒãƒ—ã—ã¦æœ€åˆã®ã‚¹ãƒ†ãƒ¼ã‚¸ã¸
                     TapToFirst.SetActive(true);
                     break;
 
@@ -135,65 +135,65 @@ public class Stage02Director : MonoBehaviour
         }
     }
 
-    // ƒnƒCƒXƒRƒAƒ`ƒFƒbƒN
+    // ãƒã‚¤ã‚¹ã‚³ã‚¢ãƒã‚§ãƒƒã‚¯
     private void checkHighScore()
     {
-        // Œ»ƒXƒRƒA‚ªƒnƒCƒXƒRƒA‚ğã‰ñ‚Á‚½‚ç
+        // ç¾ã‚¹ã‚³ã‚¢ãŒãƒã‚¤ã‚¹ã‚³ã‚¢ã‚’ä¸Šå›ã£ãŸã‚‰
         if (dt.Score > dt.HighScore)
         {
-            // ƒnƒCƒXƒRƒAXV
+            // ãƒã‚¤ã‚¹ã‚³ã‚¢æ›´æ–°
             dt.HighScore = dt.Score;
             textHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
 
-            // ƒnƒCƒXƒRƒA•Û‘¶
+            // ãƒã‚¤ã‚¹ã‚³ã‚¢ä¿å­˜
             PlayerPrefs.SetInt(dt.SAVE_KEY, dt.HighScore);
             PlayerPrefs.Save();
         }
     }
 
-    // ƒQ[ƒ€ƒXƒ^[ƒg‰¹º
+    // ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆéŸ³å£°
     IEnumerator GameStart()
     {
         yield return new WaitForSeconds(0.01f);
         audioSource.PlayOneShot(vGameStart);
     }
 
-    // æ¶ƒGƒ“ƒfƒBƒ“ƒO
+    // å…ˆç”Ÿã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
     IEnumerator SenseiEnding()
     {
-        // æ¶ƒCƒ“ƒWƒP[ƒ^‚ğÁ‹
+        // å…ˆç”Ÿã‚¤ãƒ³ã‚¸ã‚±ãƒ¼ã‚¿ã‚’æ¶ˆå»
         for (int i = 0; i < 4; i++)
         {
             textMoji[i].SetActive(false);
         }
 
-        // æ¶ƒGƒ“ƒfƒBƒ“ƒO•\¦
+        // å…ˆç”Ÿã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°è¡¨ç¤º
         textSenseiClear.SetActive(true);
 
-        // ƒXƒe[ƒWƒNƒŠƒA‰¹º
-        audioSource.PlayOneShot(vStageClear);
+        // ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒªã‚¢éŸ³å£°
+        audioSource.PlayOneShot(vStageClear[Random.Range(0, 3)]);
         yield return new WaitForSeconds(2.0f);
 
-        // c‚èƒuƒƒbƒN‚ğ“¾“_‚É
+        // æ®‹ã‚Šãƒ–ãƒ­ãƒƒã‚¯ã‚’å¾—ç‚¹ã«
         for (int i = 48; i >= 0; i--)
         {
-            // ƒuƒƒbƒN‚ªƒAƒNƒeƒBƒu‚¾‚Á‚½‚ç
+            // ãƒ–ãƒ­ãƒƒã‚¯ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã ã£ãŸã‚‰
             if (block[i].activeSelf)
             {
-                // Œø‰Ê‰¹
+                // åŠ¹æœéŸ³
                 audioSource.PlayOneShot(sePi);
 
-                // ‚Q”{‚Ì“¾“_‚ğƒXƒRƒA‚É•t‰Á
+                // ï¼’å€ã®å¾—ç‚¹ã‚’ã‚¹ã‚³ã‚¢ã«ä»˜åŠ 
                 dt.Score += dt.Point[dt.Stage] * 2;
                 textScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
                 checkHighScore();
 
-                // ƒuƒƒbƒNÁ‹
+                // ãƒ–ãƒ­ãƒƒã‚¯æ¶ˆå»
                 block[i].SetActive(false);
                 yield return new WaitForSeconds(0.05f);
             }
         }
-        // ƒ^ƒbƒv‚µ‚ÄŸ‚ÌƒXƒe[ƒW‚Ö
+        // ã‚¿ãƒƒãƒ—ã—ã¦æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã¸
         TapToNext.SetActive(true);
     }
 }

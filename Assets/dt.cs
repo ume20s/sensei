@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class dt : MonoBehaviour
 {
-    // ƒXƒe[ƒWƒRƒ“ƒgƒ[ƒ‹
-    public static int Stage;                    // ƒXƒe[ƒWƒiƒ“ƒo[
-    public static bool isClear;                 // ƒNƒŠƒAƒtƒ‰ƒO
-    public static int clearStatus;              // ƒNƒŠƒAƒXƒe[ƒ^ƒXi1:‚¹‚ñ‚¹‚¢ƒNƒŠƒA 2:‘SÁ‚µƒNƒŠƒAj
-    public static bool isMojiDestroy;           // c‚è•‚—V•¶šÁ‹ƒtƒ‰ƒO
-    public static int remainBlock;              // c‚èƒuƒƒbƒN”
-    public static int getMojiNum;               // ƒQƒbƒg‚µ‚½•¶š”Ô†
+    // ã‚¹ãƒ†ãƒ¼ã‚¸ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+    public static int Stage;                    // ã‚¹ãƒ†ãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼
+    public static bool isClear;                 // ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°
+    public static int clearStatus;              // ã‚¯ãƒªã‚¢ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼ˆ1:ã›ã‚“ã›ã„ã‚¯ãƒªã‚¢ 2:å…¨æ¶ˆã—ã‚¯ãƒªã‚¢ï¼‰
+    public static bool isMojiDestroy;           // æ®‹ã‚Šæµ®éŠæ–‡å­—æ¶ˆå»ãƒ•ãƒ©ã‚°
+    public static int remainBlock;              // æ®‹ã‚Šãƒ–ãƒ­ãƒƒã‚¯æ•°
+    public static int getMojiNum;               // ã‚²ãƒƒãƒˆã—ãŸæ–‡å­—ç•ªå·
 
 
-    // ƒXƒRƒAŠÖ˜A
+    // ã‚¹ã‚³ã‚¢é–¢é€£
     public static int Score;
     public static int HighScore;
-    public static string SAVE_KEY = "HighScore";    // ƒnƒCƒXƒRƒA•Û‘¶ƒL[
+    public static string SAVE_KEY = "HighScore";    // ãƒã‚¤ã‚¹ã‚³ã‚¢ä¿å­˜ã‚­ãƒ¼
 
-    // Ÿ‚ÌƒXƒe[ƒW–¼
+    // æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸å
     public static readonly string[] NextStage =
     {
         "stage02",
@@ -32,17 +32,17 @@ public class dt : MonoBehaviour
         "GameClear"
     };
 
-    // ƒXƒe[ƒW–ˆ‚ÌƒNƒŠƒA‚É•K—v‚È•¶š”
+    // ã‚¹ãƒ†ãƒ¼ã‚¸æ¯ã®ã‚¯ãƒªã‚¢ã«å¿…è¦ãªæ–‡å­—æ•°
     public static readonly int[] clearMojiNum =
     {
         2, 4, 6, 2, 4, 6, 2, 4, 6
     };
 
-    // ƒXƒe[ƒW–ˆ‚ÌƒNƒŠƒA•¶š—ñ
+    // ã‚¹ãƒ†ãƒ¼ã‚¸æ¯ã®ã‚¯ãƒªã‚¢æ–‡å­—åˆ—
     public static readonly int[,] seikaiMoji =
     {
-        { 0, 1, 0, 0, 0, 0 },   // æ¶
-        { 0, 1, 0, 2, 0, 0 },   // ‚¹‚ñ‚¹‚¢
+        { 0, 1, 0, 0, 0, 0 },   // å…ˆç”Ÿ
+        { 0, 1, 0, 2, 0, 0 },   // ã›ã‚“ã›ã„
         { 0, 1, 2, 0, 1, 3 },   // SENSEI
         { 0, 1, 0, 0, 0, 0 },
         { 0, 1, 0, 2, 0, 0 },
@@ -52,31 +52,31 @@ public class dt : MonoBehaviour
         { 0, 1, 2, 0, 1, 3 }
     };
 
-    // ƒXƒe[ƒW–ˆ‚Ì•¶š”­¶Šm—¦
+    // ã‚¹ãƒ†ãƒ¼ã‚¸æ¯ã®æ–‡å­—ç™ºç”Ÿç¢ºç‡
     public static readonly int[] mojiProbabirity =
     {
         50, 60, 70, 70, 80, 90, 80, 90, 100
     };
 
-    // ƒXƒe[ƒW–ˆ‚Ì”­¶‚·‚é•¶ší”
+    // ã‚¹ãƒ†ãƒ¼ã‚¸æ¯ã®ç™ºç”Ÿã™ã‚‹æ–‡å­—ç¨®æ•°
     public static readonly int[] mojiSyurui =
     {
         2, 3, 4, 4, 6, 8, 6, 9, 12
     };
 
-    // ƒXƒe[ƒW–ˆ‚ÌƒuƒƒbƒNƒ|ƒCƒ“ƒg
+    // ã‚¹ãƒ†ãƒ¼ã‚¸æ¯ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒã‚¤ãƒ³ãƒˆ
     public static readonly int[] Point =
     {
         10, 15, 20, 25, 30, 35, 40, 45, 50
     };
 
-    // ƒXƒe[ƒW–ˆ‚Ì•¶š—‰ºƒXƒs[ƒh
+    // ã‚¹ãƒ†ãƒ¼ã‚¸æ¯ã®æ–‡å­—è½ä¸‹ã‚¹ãƒ”ãƒ¼ãƒ‰
     public static readonly float[] MojiSpeed =
     {
         -2.5f, -3.0f, -3.5f, -5.0f, -5.5f, -6.0f, -7.5f, -8.0f, -8.5f
     };
 
-    // ƒuƒƒbƒNˆÊ’uÀ•W
+    // ãƒ–ãƒ­ãƒƒã‚¯ä½ç½®åº§æ¨™
     public static readonly float[] x =
     {
         -3.6f, -1.2f, 1.2f, 3.6f,

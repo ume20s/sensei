@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ballCtrl : MonoBehaviour
 {
-    // •Ï”‚à‚ë‚à‚ë
-    float ballSpeed = 5.0f;        // ƒ{[ƒ‹‚Ì‘¬‚³
-    float minSpeed = 10.0f;          // ƒ{[ƒ‹‘¬‚³‚Ì”ÍˆÍ 
+    // å¤‰æ•°ã‚‚ã‚ã‚‚ã‚
+    float ballSpeed = 5.0f;         // ãƒœãƒ¼ãƒ«ã®é€Ÿã•
+    float minSpeed = 10.0f;         // ãƒœãƒ¼ãƒ«é€Ÿã•ã®ç¯„å›² 
     float maxSpeed = 20.0f;
 
-    Rigidbody Rigid;                // ƒŠƒWƒbƒhƒ{ƒfƒBƒRƒ“ƒ|[ƒlƒ“ƒg
-    Transform Trans;                // ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€ƒRƒ“ƒ|[ƒlƒ“ƒgiˆÊ’uæ“¾—pj
+    Rigidbody Rigid;                // ãƒªã‚¸ãƒƒãƒ‰ãƒœãƒ‡ã‚£ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
+    Transform Trans;                // ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆï¼ˆä½ç½®å–å¾—ç”¨ï¼‰
 
-    // ‰¹ºŠÖ˜A
+    // éŸ³å£°é–¢é€£
     AudioSource audioSource;
     public AudioClip seKin;
     public AudioClip seKon;
@@ -20,72 +20,72 @@ public class ballCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ƒŠƒWƒbƒhƒ{ƒfƒBƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // ãƒªã‚¸ãƒƒãƒ‰ãƒœãƒ‡ã‚£ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         Rigid = GetComponent<Rigidbody>();
 
-        // ‰¹ºƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // éŸ³å£°ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         audioSource = GetComponent<AudioSource>();
 
-        // ©•ª‚ÌˆÊ’u‚Ìæ“¾
+        // è‡ªåˆ†ã®ä½ç½®ã®å–å¾—
         Trans = transform;
 
-        // ‰EÎ‚ß45“x‚Éi‚Ş
+        // å³æ–œã‚45åº¦ã«é€²ã‚€
         Rigid.velocity = new Vector3(ballSpeed, ballSpeed, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Œ»İ‚Ì‘¬‚³‚ğæ“¾
+        // ç¾åœ¨ã®é€Ÿã•ã‚’å–å¾—
         Vector3 velocity = Rigid.velocity;
 
-        // ƒfƒoƒbƒO—p
+        // ãƒ‡ãƒãƒƒã‚°ç”¨
         Debug.Log("Pos="+Trans.position.y+", velo="+ velocity.y);
 
-        // ‘¬“x‚Ì‚™¬•ª‚ª­‚È‚©‚Á‚½‚ç·‚éiç“úè‘Îôj
+        // é€Ÿåº¦ã®ï½™æˆåˆ†ãŒå°‘ãªã‹ã£ãŸã‚‰ç››ã‚‹ï¼ˆåƒæ—¥æ‰‹å¯¾ç­–ï¼‰
         if(velocity.y < 2.0f && velocity.y > -2.0f)
         {
-            if(Trans.position.y > 0)    // ƒ{[ƒ‹ˆÊ’u‚ªã”¼•ª‚¾‚Á‚½‚ç
+            if(Trans.position.y > 0)    // ãƒœãƒ¼ãƒ«ä½ç½®ãŒä¸ŠåŠåˆ†ã ã£ãŸã‚‰
             {
-                velocity.y = -10.0f;     // ‰º‚É·‚é
+                velocity.y = -10.0f;     // ä¸‹ã«ç››ã‚‹
             }
-            else                        // ‰º”¼•ª‚¾‚Á‚½‚ç
+            else                        // ä¸‹åŠåˆ†ã ã£ãŸã‚‰
             {
-                velocity.y = 7.0f;      // ã‚É·‚é
+                velocity.y = 7.0f;      // ä¸Šã«ç››ã‚‹
             }
         }
 
-        // ‘¬‚³‚ğ”ÍˆÍ“à‚É—}‚¦‚é
+        // é€Ÿã•ã‚’ç¯„å›²å†…ã«æŠ‘ãˆã‚‹
         float clampedSpeed = Mathf.Clamp(velocity.magnitude, minSpeed, maxSpeed);
 
-        // ‘¬“x‚ğ•ÏX
+        // é€Ÿåº¦ã‚’å¤‰æ›´
         Rigid.velocity = velocity.normalized * clampedSpeed;
     }
 
-    // ‘¼‚ÌƒIƒuƒWƒFƒNƒg‚ÆÕ“Ë
+    // ä»–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨è¡çª
     void OnCollisionEnter(Collision other)
     {
-        // Õ“Ë‚µ‚½‚Ì‚ªƒpƒhƒ‹‚¾‚Á‚½‚ç
+        // è¡çªã—ãŸã®ãŒãƒ‘ãƒ‰ãƒ«ã ã£ãŸã‚‰
         if (other.gameObject.CompareTag("Paddle"))
         {
-            // ŒÅ’è•¨—pŒø‰Ê‰¹
+            // å›ºå®šç‰©ç”¨åŠ¹æœéŸ³
             audioSource.PlayOneShot(seKon);
 
-            // Õ“ËˆÊ’u‚É‚æ‚Á‚Ä”½ËŠp“x‚ğ•Ï‚¦‚é
-            Vector3 paddlePos = other.transform.position;           // ƒpƒhƒ‹‚ÌˆÊ’u
-            Vector3 ballPos = Trans.position;                       // ƒ{[ƒ‹‚ÌˆÊ’u
-            Vector3 direction = (ballPos - paddlePos).normalized;   // ƒ{[ƒ‹‚Ì”½ËŠp“x
-            float speed = Rigid.velocity.magnitude;                 // Œ»İ‚Ì‘¬“x
-            Rigid.velocity = direction * speed;                     // Œü‚«‚Æ‘¬“x‚ğ•ÏX
+            // è¡çªä½ç½®ã«ã‚ˆã£ã¦åå°„è§’åº¦ã‚’å¤‰ãˆã‚‹
+            Vector3 paddlePos = other.transform.position;           // ãƒ‘ãƒ‰ãƒ«ã®ä½ç½®
+            Vector3 ballPos = Trans.position;                       // ãƒœãƒ¼ãƒ«ã®ä½ç½®
+            Vector3 direction = (ballPos - paddlePos).normalized;   // ãƒœãƒ¼ãƒ«ã®åå°„è§’åº¦
+            float speed = Rigid.velocity.magnitude;                 // ç¾åœ¨ã®é€Ÿåº¦
+            Rigid.velocity = direction * speed;                     // å‘ãã¨é€Ÿåº¦ã‚’å¤‰æ›´
         }
         else if(other.gameObject.CompareTag("Wall"))
         {
-            // ŒÅ’è•¨—pŒø‰Ê‰¹
+            // å›ºå®šç‰©ç”¨åŠ¹æœéŸ³
             audioSource.PlayOneShot(seKon);
         }
         else
         {
-            // Á‚¦‚éƒuƒƒbƒN—pŒø‰Ê‰¹
+            // æ¶ˆãˆã‚‹ãƒ–ãƒ­ãƒƒã‚¯ç”¨åŠ¹æœéŸ³
             audioSource.PlayOneShot(seKin);
         }
     }

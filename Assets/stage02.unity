@@ -1977,7 +1977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vGameStart: {fileID: 8300000, guid: 39b66be991060e744ab27d9f07338e85, type: 3}
-  vStageClear: {fileID: 8300000, guid: f3192462a4d8f0d40830db99d0a957fc, type: 3}
+  vStageClear:
+  - {fileID: 8300000, guid: eac3cd92004fca846a5e2dd8c281769c, type: 3}
+  - {fileID: 8300000, guid: 80e3c0b4a7b751a41bca07558a7dbd71, type: 3}
+  - {fileID: 8300000, guid: 4590d3a90ba29194fbbcfa7c51f958af, type: 3}
   vGameOver: {fileID: 8300000, guid: 0bc11cfeedc43314a837eb6c21d4885b, type: 3}
   sePi: {fileID: 8300000, guid: dc4cb8c09ca39dc41ac944f871b31c01, type: 3}
   seKirarin: {fileID: 8300000, guid: 6dd9932314a953847bf6a72e4eda526f, type: 3}

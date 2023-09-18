@@ -6,19 +6,19 @@ using UnityEngine.Rendering;
 
 public class moji01Ctrl : MonoBehaviour
 {
-    // •Ï”‚à‚ë‚à‚ë
-    public int num;                                 // ©•ª‚Ì•¶š”Ô†i¶¬‚Éİ’è‚³‚ê‚éj
+    // å¤‰æ•°ã‚‚ã‚ã‚‚ã‚
+    public int num;                                 // è‡ªåˆ†ã®æ–‡å­—ç•ªå·ï¼ˆç”Ÿæˆæ™‚ã«è¨­å®šã•ã‚Œã‚‹ï¼‰
 
-    // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg
-    GameObject[] textMoji = new GameObject[2];      // ³‰ğƒCƒ“ƒWƒP[ƒ^[•¶š
+    // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    GameObject[] textMoji = new GameObject[2];      // æ­£è§£ã‚¤ãƒ³ã‚¸ã‚±ãƒ¼ã‚¿ãƒ¼æ–‡å­—
 
-    // ƒŠƒWƒbƒhƒ{ƒfƒBƒRƒ“ƒ|[ƒlƒ“ƒg
+    // ãƒªã‚¸ãƒƒãƒ‰ãƒœãƒ‡ã‚£ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
     Rigidbody Rigid;
 
-    // ƒXƒvƒ‰ƒCƒgƒŒƒ“ƒ_ƒ‰
+    // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¬ãƒ³ãƒ€ãƒ©
     SpriteRenderer spriteRenderer;
 
-    // ‰¹ºŠÖ˜A
+    // éŸ³å£°é–¢é€£
     AudioSource audioSource;
     public AudioClip seKirarin;
     public AudioClip seHenyo;
@@ -26,83 +26,83 @@ public class moji01Ctrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ìæ“¾
+        // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—
         textMoji[0] = GameObject.Find("textSen");
         textMoji[1] = GameObject.Find("textSei");
 
-        // ƒŠƒWƒbƒhƒ{ƒfƒBƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // ãƒªã‚¸ãƒƒãƒ‰ãƒœãƒ‡ã‚£ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         Rigid = GetComponent<Rigidbody>();
 
-        // ƒXƒvƒ‰ƒCƒgƒŒƒ“ƒ_ƒ‰ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // ‰¹ºƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // éŸ³å£°ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         audioSource = GetComponent<AudioSource>();
 
-        // ƒŒƒCƒ„‚ğè‘O‚É‚Á‚Ä‚­‚é
+        // ãƒ¬ã‚¤ãƒ¤ã‚’æ‰‹å‰ã«æŒã£ã¦ãã‚‹
         GetComponent<SortingGroup>().sortingOrder = 3;
 
-        // ‰º‚É—‚¿‚é
+        // ä¸‹ã«è½ã¡ã‚‹
         Rigid.velocity = new Vector3(0.0f, dt.MojiSpeed[dt.Stage], 0.0f);
     }
 
-    // ‘¼‚ÌƒIƒuƒWƒFƒNƒg‚ÆÚG
+    // ä»–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨æ¥è§¦
     void OnTriggerEnter(Collider other)
     {
-        // ÚG‚µ‚½‚Ì‚ªƒpƒhƒ‹‚¾‚Á‚½‚ç
+        // æ¥è§¦ã—ãŸã®ãŒãƒ‘ãƒ‰ãƒ«ã ã£ãŸã‚‰
         if (other.CompareTag("Paddle"))
         {
-            // ³‰ğ•¶š‚¾‚Á‚½‚ç
+            // æ­£è§£æ–‡å­—ã ã£ãŸã‚‰
             if (num == dt.seikaiMoji[dt.Stage, dt.getMojiNum])
             {
-                // ³‰ğ•¶šF‚ğ–¾‚é‚­‚·‚é
+                // æ­£è§£æ–‡å­—è‰²ã‚’æ˜ã‚‹ãã™ã‚‹
                 textMoji[dt.getMojiNum].GetComponent<Text>().color = Color.yellow;
 
-                // ³‰ğ•¶š”‚ğ‰ÁZ
+                // æ­£è§£æ–‡å­—æ•°ã‚’åŠ ç®—
                 dt.getMojiNum++;
 
-                // ³‰ğŒø‰Ê‰¹
+                // æ­£è§£åŠ¹æœéŸ³
                 audioSource.PlayOneShot(seKirarin);
 
-                // ƒNƒŠƒA•¶š”‚É’B‚µ‚½‚ç
+                // ã‚¯ãƒªã‚¢æ–‡å­—æ•°ã«é”ã—ãŸã‚‰
                 if (dt.getMojiNum == dt.clearMojiNum[dt.Stage])
                 {
-                    // ƒXƒe[ƒ^ƒX‚Íæ¶ƒNƒŠƒA
+                    // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¯å…ˆç”Ÿã‚¯ãƒªã‚¢
                     dt.clearStatus = 1;
 
-                    // ƒNƒŠƒAƒtƒ‰ƒO‚ğtrue‚É
+                    // ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’trueã«
                     dt.isClear = true;
                 }
             }
-            // ³‰ğ‚¶‚á‚È‚©‚Á‚½‚çÅ‰‚©‚ç
+            // æ­£è§£ã˜ã‚ƒãªã‹ã£ãŸã‚‰æœ€åˆã‹ã‚‰
             else
             {
-                // •s³‰ğŒø‰Ê‰¹
+                // ä¸æ­£è§£åŠ¹æœéŸ³
                 audioSource.PlayOneShot(seHenyo);
 
-                // ƒQƒbƒg‚µ‚½•¶š”Ô†‚ğƒ[ƒ‚É
+                // ã‚²ãƒƒãƒˆã—ãŸæ–‡å­—ç•ªå·ã‚’ã‚¼ãƒ­ã«
                 dt.getMojiNum = 0;
 
-                // •¶šF‚ğˆÃ‚­‚·‚é
+                // æ–‡å­—è‰²ã‚’æš—ãã™ã‚‹
                 for (int i = 0; i < dt.clearMojiNum[dt.Stage]; i++)
                 {
                     textMoji[i].GetComponent<Text>().color = new Color(0.31f, 0.31f, 0.0f, 1.0f); ;
                 }
 
-                // c‚èƒuƒƒbƒN‚ªi•K—v•¶š”|ƒQƒbƒg‚µ‚Ä‚¢‚é•¶š”j‚æ‚è¬‚³‚©‚Á‚½‚çƒQ[ƒ€ƒI[ƒo[
+                // æ®‹ã‚Šãƒ–ãƒ­ãƒƒã‚¯ãŒï¼ˆå¿…è¦æ–‡å­—æ•°ï¼ã‚²ãƒƒãƒˆã—ã¦ã„ã‚‹æ–‡å­—æ•°ï¼‰ã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
                 if (dt.remainBlock < dt.clearMojiNum[dt.Stage] - dt.getMojiNum)
                 {
-                    // ƒXƒe[ƒ^ƒX‚Í‘SÁ‚µƒNƒŠƒA
+                    // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¯å…¨æ¶ˆã—ã‚¯ãƒªã‚¢
                     dt.clearStatus = 2;
 
-                    // ƒNƒŠƒAƒtƒ‰ƒO‚ğtrue‚É
+                    // ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’trueã«
                     dt.isClear = true;
                 }
             }
-            // ”ñ•\¦iŒø‰Ê‰¹‚ğo‚·‚½‚ß‚ÉDestroy‚âSetActive(false)‚ÅÁ‚³‚È‚¢j
+            // éè¡¨ç¤ºï¼ˆåŠ¹æœéŸ³ã‚’å‡ºã™ãŸã‚ã«Destroyã‚„SetActive(false)ã§æ¶ˆã•ãªã„ï¼‰
             spriteRenderer.enabled = false;
         }
-        // ÚG‚µ‚½‚Ì‚ª•Ç‚¾‚Á‚½‚çÁ‚¦‚é
+        // æ¥è§¦ã—ãŸã®ãŒå£ã ã£ãŸã‚‰æ¶ˆãˆã‚‹
         else if(other.CompareTag("Wall"))
         {
             Destroy(gameObject);
@@ -112,10 +112,10 @@ public class moji01Ctrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // •¶šÁ‹ƒtƒ‰ƒO‚½‚Á‚Ä‚½‚ç
+        // æ–‡å­—æ¶ˆå»ãƒ•ãƒ©ã‚°ãŸã£ã¦ãŸã‚‰
         if (dt.isMojiDestroy)
         {
-            // •¶šÁ‹
+            // æ–‡å­—æ¶ˆå»
             Destroy(gameObject);
         }
     }

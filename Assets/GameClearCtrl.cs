@@ -5,32 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class GameClearCtrl : MonoBehaviour
 {
-    // ‰¹ºŠÖ˜A
+    // éŸ³å£°é–¢é€£
     AudioSource audioSource;
     public AudioClip vOmedetou;
 
     // Start is called before the first frame update
     void Start()
     {
-        // ‰¹ºƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // éŸ³å£°ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         audioSource = GetComponent<AudioSource>();
 
-        // ƒQ[ƒ€ƒNƒŠƒA‰¹º
+        // ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢éŸ³å£°
         StartCoroutine("Omedetou");
     }
 
-    // ƒQ[ƒ€ƒNƒŠƒA‰¹º
+    // ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢éŸ³å£°
     IEnumerator Omedetou()
     {
-        // ‰¹ºƒRƒ“ƒ|[ƒlƒ“ƒgæ“¾‚Ì‚½‚ß‚Ìƒ^ƒCƒ€ƒ‰ƒO‚ğl—¶
+        // éŸ³å£°ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå–å¾—ã®ãŸã‚ã®ã‚¿ã‚¤ãƒ ãƒ©ã‚°ã‚’è€ƒæ…®
         yield return new WaitForSeconds(0.01f);
         audioSource.PlayOneShot(vOmedetou);
     }
 
-    // ƒ^ƒbƒv‚µ‚½‚ç
+    // ã‚¿ãƒƒãƒ—ã—ãŸã‚‰
     public void onClick()
     {
-        // ƒQ[ƒ€ŠJn‰æ–Ê‚Ö
+        // ã‚²ãƒ¼ãƒ é–‹å§‹ç”»é¢ã¸
         SceneManager.LoadScene("GameStart");
     }
 }

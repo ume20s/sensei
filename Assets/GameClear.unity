@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6ea049cb46a444b853bc6c7a76523d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vOmedetou: {fileID: 8300000, guid: 6c107943495ba5e428bb8bcd1d14f946, type: 3}
+  vOmedetou: {fileID: 8300000, guid: f7be5a81732e5d747b244958ccdda1d2, type: 3}
 --- !u!82 &1570230023
 AudioSource:
   m_ObjectHideFlags: 0

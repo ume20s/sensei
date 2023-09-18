@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class taptoNextCtrl : MonoBehaviour
 {
-    // ƒ^ƒbƒv‚µ‚½‚ç
+    // ã‚¿ãƒƒãƒ—ã—ãŸã‚‰
     public void onClick()
     {
-        // Ÿ‚ÌƒXƒe[ƒW‚Ö
+        // æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã¸
         SceneManager.LoadScene(dt.NextStage[dt.Stage]);
     }
 }

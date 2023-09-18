@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class taptoFirstCtrl : MonoBehaviour
 {
-    // ƒ^ƒbƒv‚µ‚½‚ç
+    // ã‚¿ãƒƒãƒ—ã—ãŸã‚‰
     public void onClick()
     {
-        // Å‰‚ÌƒXƒe[ƒW‚Ö
+        // æœ€åˆã®ã‚¹ãƒ†ãƒ¼ã‚¸ã¸
         SceneManager.LoadScene("GameStart");
     }
 }

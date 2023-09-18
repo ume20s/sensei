@@ -6,84 +6,84 @@ using UnityEngine.Rendering;
 
 public class block02Ctrl : MonoBehaviour
 {
-    // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg
-    public GameObject mojiPrefab;   // •¶šPrefab
-    GameObject moji;                // ¶¬‚·‚é•¶šƒIƒuƒWƒFƒNƒg
-    GameObject textScore;           // ƒXƒRƒA
-    GameObject textHighScore;       // ƒnƒCƒXƒRƒA
+    // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    public GameObject mojiPrefab;   // æ–‡å­—Prefab
+    GameObject moji;                // ç”Ÿæˆã™ã‚‹æ–‡å­—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    GameObject textScore;           // ã‚¹ã‚³ã‚¢
+    GameObject textHighScore;       // ãƒã‚¤ã‚¹ã‚³ã‚¢
 
-    // •¶šprefab‚ÌƒXƒvƒ‰ƒCƒgƒŒƒ“ƒ_ƒ‰[ƒRƒ“ƒ|[ƒlƒ“ƒg
+    // æ–‡å­—prefabã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
     SpriteRenderer spriteRenderer;
 
-    // •¶šƒXƒvƒ‰ƒCƒg
+    // æ–‡å­—ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
     public Sprite[] mojiSprite = new Sprite[9];
 
     // Start is called before the first frame update
     void Start()
     {
-        // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ìæ“¾
+        // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—
         textScore = GameObject.Find("textScore");
         textHighScore = GameObject.Find("textHighScore");
 
-        // ƒŒƒCƒ„‚ğè‘O‚É‚Á‚Ä‚­‚é
+        // ãƒ¬ã‚¤ãƒ¤ã‚’æ‰‹å‰ã«æŒã£ã¦ãã‚‹
         GetComponent<SortingGroup>().sortingOrder = 2;
     }
 
-    // ƒ{[ƒ‹‚ª‚Ô‚Â‚©‚Á‚½‚ç
+    // ãƒœãƒ¼ãƒ«ãŒã¶ã¤ã‹ã£ãŸã‚‰
     void OnCollisionEnter(Collision collision)
     {
-        // ƒXƒRƒA‰ÁZ
+        // ã‚¹ã‚³ã‚¢åŠ ç®—
         dt.Score += dt.Point[dt.Stage];
         textScore.GetComponent<Text>().text = "Score:" + dt.Score.ToString("D5");
         checkHighScore();
 
-        // ƒuƒƒbƒNíœ
+        // ãƒ–ãƒ­ãƒƒã‚¯å‰Šé™¤
         gameObject.SetActive(false);
         dt.remainBlock--;
 
-        // c‚èƒuƒƒbƒN‚ªi•K—v•¶š”|ƒQƒbƒg‚µ‚Ä‚¢‚é•¶š”j‚æ‚è¬‚³‚©‚Á‚½‚çƒQ[ƒ€ƒI[ƒo[
+        // æ®‹ã‚Šãƒ–ãƒ­ãƒƒã‚¯ãŒï¼ˆå¿…è¦æ–‡å­—æ•°ï¼ã‚²ãƒƒãƒˆã—ã¦ã„ã‚‹æ–‡å­—æ•°ï¼‰ã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
         if (dt.remainBlock < dt.clearMojiNum[dt.Stage] - dt.getMojiNum)
         {
-            // ƒXƒe[ƒ^ƒX‚Í‘SÁ‚µƒNƒŠƒA
+            // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¯å…¨æ¶ˆã—ã‚¯ãƒªã‚¢
             dt.clearStatus = 2;
 
-            // ƒNƒŠƒAƒtƒ‰ƒO‚ğtrue‚É
+            // ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’trueã«
             dt.isClear = true;
         }
 
-        // ƒXƒe[ƒWİ’è–ˆ‚ÌŠm—¦‚Å•¶š‚ª”­¶
+        // ã‚¹ãƒ†ãƒ¼ã‚¸è¨­å®šæ¯ã®ç¢ºç‡ã§æ–‡å­—ãŒç™ºç”Ÿ
         if (Random.Range(0, 100) < dt.mojiProbabirity[dt.Stage])
         {
-            // ¶¬‚·‚é•¶š”Ô†
+            // ç”Ÿæˆã™ã‚‹æ–‡å­—ç•ªå·
             int num = Random.Range(0, dt.mojiSyurui[dt.Stage]);
 
-            // •¶š‚ğ¶¬
+            // æ–‡å­—ã‚’ç”Ÿæˆ
             moji = Instantiate(mojiPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1.0f, 0.0f), Quaternion.identity);
 
-            // •¶š”Ô†‚©‚ç•¶š‚ğƒZƒbƒg
+            // æ–‡å­—ç•ªå·ã‹ã‚‰æ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
             spriteRenderer = moji.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = mojiSprite[num];
 
-            // ƒfƒoƒbƒO—p
+            // ãƒ‡ãƒãƒƒã‚°ç”¨
             // Debug.Log("num = " + num);
             // Debug.Log("moji= " + spriteRenderer);
 
-            // ƒIƒuƒWƒFƒNƒg‚Å•¶š”Ô†‚ğ•Û‚·‚é
+            // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§æ–‡å­—ç•ªå·ã‚’ä¿æŒã™ã‚‹
             moji.GetComponent<moji02Ctrl>().num = num;
         }
     }
 
-    // ƒnƒCƒXƒRƒAƒ`ƒFƒbƒN
+    // ãƒã‚¤ã‚¹ã‚³ã‚¢ãƒã‚§ãƒƒã‚¯
     private void checkHighScore()
     {
-        // Œ»ƒXƒRƒA‚ªƒnƒCƒXƒRƒA‚ğã‰ñ‚Á‚½‚ç
+        // ç¾ã‚¹ã‚³ã‚¢ãŒãƒã‚¤ã‚¹ã‚³ã‚¢ã‚’ä¸Šå›ã£ãŸã‚‰
         if (dt.Score > dt.HighScore)
         {
-            // ƒnƒCƒXƒRƒAXV
+            // ãƒã‚¤ã‚¹ã‚³ã‚¢æ›´æ–°
             dt.HighScore = dt.Score;
             textHighScore.GetComponent<Text>().text = "HighScore:" + dt.HighScore.ToString("D5");
 
-            // ƒnƒCƒXƒRƒA•Û‘¶
+            // ãƒã‚¤ã‚¹ã‚³ã‚¢ä¿å­˜
             PlayerPrefs.SetInt(dt.SAVE_KEY, dt.HighScore);
             PlayerPrefs.Save();
         }

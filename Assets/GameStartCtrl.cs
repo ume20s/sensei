@@ -8,25 +8,25 @@ public class GameStartCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ‘åˆæ•Ï”‚Ì‰Šú‰»
+        // å¤§åŸŸå¤‰æ•°ã®åˆæœŸåŒ–
         dt.Score = 0;
 
-        // ƒfƒoƒbƒO—pƒnƒCƒXƒRƒA‚ğƒ[ƒƒNƒŠƒA
+        // ãƒ‡ãƒãƒƒã‚°ç”¨ãƒã‚¤ã‚¹ã‚³ã‚¢ã‚’ã‚¼ãƒ­ã‚¯ãƒªã‚¢
         // dt.HighScore = 0;
         // PlayerPrefs.SetInt(dt.SAVE_KEY, dt.HighScore);
         // PlayerPrefs.Save();
 
-        // ƒnƒCƒXƒRƒA“Ç‚İ‚İ
+        // ãƒã‚¤ã‚¹ã‚³ã‚¢èª­ã¿è¾¼ã¿
         dt.HighScore = PlayerPrefs.GetInt(dt.SAVE_KEY, 0);
 
-        // ƒfƒoƒbƒO—p
+        // ãƒ‡ãƒãƒƒã‚°ç”¨
         // Debug.Log(dt.HighScore);
     }
 
-    // ƒ^ƒbƒv‚µ‚½‚ç
+    // ã‚¿ãƒƒãƒ—ã—ãŸã‚‰
     public void onClick()
     {
-        // ƒXƒe[ƒW‚P‚Ö
+        // ã‚¹ãƒ†ãƒ¼ã‚¸ï¼‘ã¸
         SceneManager.LoadScene("stage01");
     }
 }

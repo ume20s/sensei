@@ -4,38 +4,38 @@ using UnityEngine;
 
 public class paddleCtrl : MonoBehaviour
 {
-    // •Ï”‚à‚ë‚à‚ë
-    public float speed = 10.0f;        // ƒpƒhƒ‹‚Ì‘¬‚³
-    Vector2 target;                    // ƒ^ƒbƒv‚µ‚½ˆÊ’u
+    // å¤‰æ•°ã‚‚ã‚ã‚‚ã‚
+    public float speed = 10.0f;        // ãƒ‘ãƒ‰ãƒ«ã®é€Ÿã•
+    Vector2 target;                    // ã‚¿ãƒƒãƒ—ã—ãŸä½ç½®
 
-    // ƒŠƒWƒbƒhƒ{ƒfƒBƒRƒ“ƒ|[ƒlƒ“ƒg
+    // ãƒªã‚¸ãƒƒãƒ‰ãƒœãƒ‡ã‚£ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
     Rigidbody Rigid;
 
     // Start is called before the first frame update
     void Start()
     {
-        // ƒŠƒWƒbƒhƒ{ƒfƒBƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        // ãƒªã‚¸ãƒƒãƒ‰ãƒœãƒ‡ã‚£ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         Rigid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ƒ^ƒbƒv‚³‚ê‚Ä‚¢‚½‚ç
+        // ã‚¿ãƒƒãƒ—ã•ã‚Œã¦ã„ãŸã‚‰
         if (Input.GetMouseButton(0))
         {
-            // ƒ^ƒbƒvˆÊ’u‚ğæ“¾
+            // ã‚¿ãƒƒãƒ—ä½ç½®ã‚’å–å¾—
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            // è‘O‚Åƒ^ƒbƒv‚È‚ç‘€ìŠJn
+            // æ‰‹å‰ã§ã‚¿ãƒƒãƒ—ãªã‚‰æ“ä½œé–‹å§‹
             if(target.y < -5.0f)
             {
                 Rigid.velocity = new Vector3((target.x - this.transform.localPosition.x) * speed, 0.0f, 0.0f);
             }
-            // ƒfƒoƒbƒO—p
+            // ãƒ‡ãƒãƒƒã‚°ç”¨
             // Debug.Log(target.x + "," + this.transform.localPosition.x);
         }
-        // ƒ^ƒbƒv‚µ‚Ä‚¢‚È‚©‚Á‚½‚çƒXƒs[ƒhƒ[ƒ
+        // ã‚¿ãƒƒãƒ—ã—ã¦ã„ãªã‹ã£ãŸã‚‰ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚¼ãƒ­
         else
         {
             Rigid.velocity = new Vector3(0.0f, 0.0f, 0.0f);
