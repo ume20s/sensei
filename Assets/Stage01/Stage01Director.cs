@@ -23,7 +23,6 @@ public class Stage01Director : MonoBehaviour
     GameObject textGameOver;                            // ゲームオーバー表示
     GameObject TapToNext;                               // タップして次のステージ
     GameObject TapToFirst;                              // タップして最初のステージ
-    GameObject Ball;                                    // ボール
     GameObject Paddle;                                  // パドル
 
     // ブロックprefabのスプライトレンダラーコンポーネント
@@ -40,6 +39,7 @@ public class Stage01Director : MonoBehaviour
         dt.isClear = false;
         dt.clearStatus = -1;
         dt.isMojiDestroy = false;
+        dt.isBallDestroy = false;
         dt.getMojiNum = 0;
 
         // ゲームオブジェクトの取得
@@ -51,7 +51,6 @@ public class Stage01Director : MonoBehaviour
         textGameOver = GameObject.Find("textGameOver");
         TapToNext = GameObject.Find("TapToNext");
         TapToFirst = GameObject.Find("TapToFirst");
-        Ball = GameObject.Find("ball");
         Paddle = GameObject.Find("paddle");
 
         // 音声コンポーネントの取得
@@ -90,8 +89,9 @@ public class Stage01Director : MonoBehaviour
             // クリアフラグfalse（多重突入を防止する）
             dt.isClear = false;
 
-            // 浮遊している文字を消去
+            // 浮遊している文字とボールを消去
             dt.isMojiDestroy = true;
+            dt.isBallDestroy = true;
 
             // BGMをオフ
             audioSource.Stop();
@@ -99,8 +99,7 @@ public class Stage01Director : MonoBehaviour
             // 最後の文字をゲットした効果音
             audioSource.PlayOneShot(seKirarin);
 
-            // ボールとパドルを消去
-            Ball.SetActive(false);
+            // パドルを消去
             Paddle.SetActive(false);
 
             // クリアステータスによりエンディングエフェクトを変える

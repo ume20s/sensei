@@ -9,9 +9,10 @@ public class dt : MonoBehaviour
     public static bool isClear;                 // クリアフラグ
     public static int clearStatus;              // クリアステータス（1:せんせいクリア 2:全消しクリア）
     public static bool isMojiDestroy;           // 残り浮遊文字消去フラグ
+    public static bool isBallDestroy;           // ボール消去フラグ
     public static int remainBlock;              // 残りブロック数
     public static int getMojiNum;               // ゲットした文字番号
-
+    public static bool isMultiBalled;           // マルチボールしたか
 
     // スコア関連
     public static int Score;
@@ -23,8 +24,8 @@ public class dt : MonoBehaviour
     {
         "stage02",
         "stage03",
-        "GameClear",
-        "GameClear",
+        "stage04",
+        "stage05",
         "GameClear",
         "GameClear",
         "GameClear",
@@ -104,5 +105,13 @@ public class dt : MonoBehaviour
         0.96f, 0.96f, 0.96f, 0.96f,
         0.08f, 0.08f, 0.08f, 0.08f, 0.08f,
         -0.8f, -0.8f, -0.8f, -0.8f
+    };
+
+    // マルチボールの飛んでく方向
+    public static readonly float[] fx = {
+        -5.0f, 0.0f, 5.0f, -5.0f, 5.0f
+    };
+    public static readonly float[] fy = {
+        5.0f, 5.0f, 5.0f, 2.0f, 2.0f
     };
 }

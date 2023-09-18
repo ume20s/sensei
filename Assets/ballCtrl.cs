@@ -36,11 +36,16 @@ public class ballCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ボール消去フラグが立っていたら自滅
+        if(dt.isBallDestroy ) {
+            Destroy(gameObject);
+        }
+
         // 現在の速さを取得
         Vector3 velocity = Rigid.velocity;
 
         // デバッグ用
-        Debug.Log("Pos="+Trans.position.y+", velo="+ velocity.y);
+        // Debug.Log("Pos="+Trans.position.y+", velo="+ velocity.y);
 
         // 速度のｙ成分が少なかったら盛る（千日手対策）
         if(velocity.y < 2.0f && velocity.y > -2.0f)
