@@ -26,7 +26,7 @@ public class dt : MonoBehaviour
         "stage03",
         "stage04",
         "stage05",
-        "GameClear",
+        "stage06",
         "GameClear",
         "GameClear",
         "GameClear",
