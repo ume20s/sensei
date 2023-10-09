@@ -28,8 +28,8 @@ public class dt : MonoBehaviour
         "stage05",
         "stage06",
         "stage07",
-        "GameClear",
-        "GameClear",
+        "stage08",
+        "stage09",
         "GameClear"
     };
 

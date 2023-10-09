@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
-public class block08Ctrl : MonoBehaviour
+public class block09Ctrl : MonoBehaviour
 {
     // ゲームオブジェクト
     public GameObject mojiPrefab;   // 文字Prefab
@@ -16,7 +16,7 @@ public class block08Ctrl : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     // 文字スプライト
-    public Sprite[] mojiSprite = new Sprite[9];
+    public Sprite[] mojiSprite = new Sprite[12];
 
     // マルチボールスプライト
     public Sprite mojiMultiBallSprite;
@@ -93,7 +93,7 @@ public class block08Ctrl : MonoBehaviour
             // Debug.Log("moji= " + spriteRenderer);
 
             // オブジェクトで文字番号を保持する
-            moji.GetComponent<moji08Ctrl>().num = num;
+            moji.GetComponent<moji09Ctrl>().num = num;
         }
     }
 
