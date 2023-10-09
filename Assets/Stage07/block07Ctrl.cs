@@ -81,6 +81,10 @@ public class block07Ctrl : MonoBehaviour
                 spriteRenderer.sprite = mojiMultiBallSprite;
             } else {
                 spriteRenderer.sprite = mojiSprite[num];
+                // 1/10の確率でデカ文字
+                if(Random.Range(0, 10) == 0){
+                    moji.transform.localScale = new Vector3(3, 3, 1);
+                }
             }
 
             // デバッグ用
