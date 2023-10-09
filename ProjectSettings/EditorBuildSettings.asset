@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/stage06.unity
     guid: 10637bff146399f4bb63d1a6c756aa9a
   - enabled: 1
+    path: Assets/stage07.unity
+    guid: cb0fc320041f76b458ff8562de5f7747
+  - enabled: 1
     path: Assets/GameClear.unity
     guid: 88c34aa03d0ba5f4e8e9861f5933b6f6
   m_configObjects: {}

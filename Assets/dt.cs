@@ -27,7 +27,7 @@ public class dt : MonoBehaviour
         "stage04",
         "stage05",
         "stage06",
-        "GameClear",
+        "stage07",
         "GameClear",
         "GameClear",
         "GameClear"
@@ -74,7 +74,7 @@ public class dt : MonoBehaviour
     // ステージ毎の文字落下スピード
     public static readonly float[] MojiSpeed =
     {
-        -2.5f, -3.0f, -3.5f, -5.0f, -5.5f, -6.0f, -7.5f, -8.0f, -8.5f
+        -2.5f, -3.0f, -3.5f, -3.5f, -4.0f, -4.5f, -4.5f, -5.0f, -6.0f
     };
 
     // ブロック位置座標
