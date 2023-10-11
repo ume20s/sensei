@@ -65,11 +65,11 @@ public class block09Ctrl : MonoBehaviour
                 num = -1;
                 dt.isMultiBalled = true;
             } else {
-                // 半分の確率でお邪魔文字を含めたランダム文字
-                if(Random.Range(0, 2) == 0) {
+                // ３分の１の確率でお邪魔文字を含めたランダム文字
+                if(Random.Range(0, 3) == 0) {
                     num = Random.Range(0, dt.mojiSyurui[dt.Stage]);
                 } else {     // 半分の確率で正解文字セットの中からランダム文字
-                    num = Random.Range(0, dt.mojiSyurui[dt.Stage-3]);
+                    num = Random.Range(0, dt.mojiSyurui[dt.Stage-6]);
                 }
             }
 
