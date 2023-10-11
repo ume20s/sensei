@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ballCtrl : MonoBehaviour
 {
+    // デバッグ用
+    // float xmax=0,ymax=0,xmin=0,ymin=0;
+
     // 変数もろもろ
     float ballSpeed = 5.0f;         // ボールの速さ
-    float minSpeed = 10.0f;         // ボール速さの範囲 
+    float minSpeed = 8.0f;          // ボール速さの範囲 
     float maxSpeed = 20.0f;
 
     Rigidbody Rigid;                // リジッドボディコンポーネント
@@ -44,8 +47,18 @@ public class ballCtrl : MonoBehaviour
         // 現在の速さを取得
         Vector3 velocity = Rigid.velocity;
 
+        // ボールが範囲外にあったら中に入れる
+        if(Trans.position.x<-6.3f) Trans.position = new Vector3(-6.3f,Trans.position.y,0.0f);
+        if(Trans.position.x>6.3f) Trans.position = new Vector3(6.3f,Trans.position.y,0.0f);
+        if(Trans.position.y<-10.2f) Trans.position = new Vector3(Trans.position.x,-10.2f,0.0f);
+        if(Trans.position.y>10.2f) Trans.position = new Vector3(Trans.position.x,10.2f,0.0f);
+
         // デバッグ用
-        // Debug.Log("Pos="+Trans.position.y+", velo="+ velocity.y);
+        // if(xmax<Trans.position.x) xmax = Trans.position.x;
+        // if(ymax<Trans.position.y) ymax = Trans.position.y;
+        // if(xmin>Trans.position.x) xmin = Trans.position.x;
+        // if(ymin>Trans.position.y) ymin = Trans.position.y;
+        // Debug.Log(xmin+","+xmax+","+ymin+","+ymax);
 
         // 速度のｙ成分が少なかったら盛る（千日手対策）
         if(velocity.y < 2.0f && velocity.y > -2.0f)

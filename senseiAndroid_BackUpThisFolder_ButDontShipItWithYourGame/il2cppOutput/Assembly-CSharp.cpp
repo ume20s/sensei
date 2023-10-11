@@ -2482,6 +2482,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object_Destroy_mE97D0A766419A81296E8D4E5
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Rigidbody_get_velocity_mAE331303E7214402C93E2183D0AA1198F425F843 (Rigidbody_t268697F5A994213ED97393309870968BC1C7393C* __this, const RuntimeMethod* method) ;
 // UnityEngine.Vector3 UnityEngine.Transform::get_position()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.Transform::set_position(UnityEngine.Vector3)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___value0, const RuntimeMethod* method) ;
 // System.Single UnityEngine.Vector3::get_magnitude()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_get_magnitude_mF0D6017E90B345F1F52D1CC564C640F1A847AF2D_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, const RuntimeMethod* method) ;
 // System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
@@ -2813,65 +2815,177 @@ IL_0012:
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_3;
 		L_3 = Rigidbody_get_velocity_mAE331303E7214402C93E2183D0AA1198F425F843(L_2, NULL);
 		V_0 = L_3;
-		// if(velocity.y < 2.0f && velocity.y > -2.0f)
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_4 = V_0;
-		float L_5 = L_4.___y_3;
-		if ((!(((float)L_5) < ((float)(2.0f)))))
+		// if(Trans.position.x<-6.3f) Trans.position = new Vector3(-6.3f,Trans.position.y,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_4 = __this->___Trans_8;
+		NullCheck(L_4);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_5;
+		L_5 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_4, NULL);
+		float L_6 = L_5.___x_2;
+		if ((!(((float)L_6) < ((float)(-6.30000019f)))))
 		{
-			goto IL_0069;
+			goto IL_005f;
 		}
 	}
 	{
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_6 = V_0;
-		float L_7 = L_6.___y_3;
-		if ((!(((float)L_7) > ((float)(-2.0f)))))
-		{
-			goto IL_0069;
-		}
-	}
-	{
-		// if(Trans.position.y > 0)    // ?????????????
+		// if(Trans.position.x<-6.3f) Trans.position = new Vector3(-6.3f,Trans.position.y,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_7 = __this->___Trans_8;
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_8 = __this->___Trans_8;
 		NullCheck(L_8);
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_9;
 		L_9 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_8, NULL);
 		float L_10 = L_9.___y_3;
-		if ((!(((float)L_10) > ((float)(0.0f)))))
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_11;
+		memset((&L_11), 0, sizeof(L_11));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_11), (-6.30000019f), L_10, (0.0f), /*hidden argument*/NULL);
+		NullCheck(L_7);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_7, L_11, NULL);
+	}
+
+IL_005f:
+	{
+		// if(Trans.position.x>6.3f) Trans.position = new Vector3(6.3f,Trans.position.y,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_12 = __this->___Trans_8;
+		NullCheck(L_12);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_13;
+		L_13 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_12, NULL);
+		float L_14 = L_13.___x_2;
+		if ((!(((float)L_14) > ((float)(6.30000019f)))))
 		{
-			goto IL_005d;
+			goto IL_00a0;
+		}
+	}
+	{
+		// if(Trans.position.x>6.3f) Trans.position = new Vector3(6.3f,Trans.position.y,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_15 = __this->___Trans_8;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_16 = __this->___Trans_8;
+		NullCheck(L_16);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_17;
+		L_17 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_16, NULL);
+		float L_18 = L_17.___y_3;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_19;
+		memset((&L_19), 0, sizeof(L_19));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_19), (6.30000019f), L_18, (0.0f), /*hidden argument*/NULL);
+		NullCheck(L_15);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_15, L_19, NULL);
+	}
+
+IL_00a0:
+	{
+		// if(Trans.position.y<-10.2f) Trans.position = new Vector3(Trans.position.x,-10.2f,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_20 = __this->___Trans_8;
+		NullCheck(L_20);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_21;
+		L_21 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_20, NULL);
+		float L_22 = L_21.___y_3;
+		if ((!(((float)L_22) < ((float)(-10.1999998f)))))
+		{
+			goto IL_00e1;
+		}
+	}
+	{
+		// if(Trans.position.y<-10.2f) Trans.position = new Vector3(Trans.position.x,-10.2f,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_23 = __this->___Trans_8;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_24 = __this->___Trans_8;
+		NullCheck(L_24);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_25;
+		L_25 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_24, NULL);
+		float L_26 = L_25.___x_2;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_27;
+		memset((&L_27), 0, sizeof(L_27));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_27), L_26, (-10.1999998f), (0.0f), /*hidden argument*/NULL);
+		NullCheck(L_23);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_23, L_27, NULL);
+	}
+
+IL_00e1:
+	{
+		// if(Trans.position.y>10.2f) Trans.position = new Vector3(Trans.position.x,10.2f,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_28 = __this->___Trans_8;
+		NullCheck(L_28);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_29;
+		L_29 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_28, NULL);
+		float L_30 = L_29.___y_3;
+		if ((!(((float)L_30) > ((float)(10.1999998f)))))
+		{
+			goto IL_0122;
+		}
+	}
+	{
+		// if(Trans.position.y>10.2f) Trans.position = new Vector3(Trans.position.x,10.2f,0.0f);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_31 = __this->___Trans_8;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_32 = __this->___Trans_8;
+		NullCheck(L_32);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_33;
+		L_33 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_32, NULL);
+		float L_34 = L_33.___x_2;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_35;
+		memset((&L_35), 0, sizeof(L_35));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_35), L_34, (10.1999998f), (0.0f), /*hidden argument*/NULL);
+		NullCheck(L_31);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_31, L_35, NULL);
+	}
+
+IL_0122:
+	{
+		// if(velocity.y < 2.0f && velocity.y > -2.0f)
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_36 = V_0;
+		float L_37 = L_36.___y_3;
+		if ((!(((float)L_37) < ((float)(2.0f)))))
+		{
+			goto IL_016d;
+		}
+	}
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_38 = V_0;
+		float L_39 = L_38.___y_3;
+		if ((!(((float)L_39) > ((float)(-2.0f)))))
+		{
+			goto IL_016d;
+		}
+	}
+	{
+		// if(Trans.position.y > 0)    // ?????????????
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_40 = __this->___Trans_8;
+		NullCheck(L_40);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_41;
+		L_41 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_40, NULL);
+		float L_42 = L_41.___y_3;
+		if ((!(((float)L_42) > ((float)(0.0f)))))
+		{
+			goto IL_0161;
 		}
 	}
 	{
 		// velocity.y = -10.0f;     // ????
 		(&V_0)->___y_3 = (-10.0f);
-		goto IL_0069;
+		goto IL_016d;
 	}
 
-IL_005d:
+IL_0161:
 	{
 		// velocity.y = 7.0f;      // ????
 		(&V_0)->___y_3 = (7.0f);
 	}
 
-IL_0069:
+IL_016d:
 	{
 		// float clampedSpeed = Mathf.Clamp(velocity.magnitude, minSpeed, maxSpeed);
-		float L_11;
-		L_11 = Vector3_get_magnitude_mF0D6017E90B345F1F52D1CC564C640F1A847AF2D_inline((&V_0), NULL);
-		float L_12 = __this->___minSpeed_5;
-		float L_13 = __this->___maxSpeed_6;
-		float L_14;
-		L_14 = Mathf_Clamp_mEB9AEA827D27D20FCC787F7375156AF46BB12BBF_inline(L_11, L_12, L_13, NULL);
-		V_1 = L_14;
+		float L_43;
+		L_43 = Vector3_get_magnitude_mF0D6017E90B345F1F52D1CC564C640F1A847AF2D_inline((&V_0), NULL);
+		float L_44 = __this->___minSpeed_5;
+		float L_45 = __this->___maxSpeed_6;
+		float L_46;
+		L_46 = Mathf_Clamp_mEB9AEA827D27D20FCC787F7375156AF46BB12BBF_inline(L_43, L_44, L_45, NULL);
+		V_1 = L_46;
 		// Rigid.velocity = velocity.normalized * clampedSpeed;
-		Rigidbody_t268697F5A994213ED97393309870968BC1C7393C* L_15 = __this->___Rigid_7;
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_16;
-		L_16 = Vector3_get_normalized_m736BBF65D5CDA7A18414370D15B4DFCC1E466F07_inline((&V_0), NULL);
-		float L_17 = V_1;
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_18;
-		L_18 = Vector3_op_Multiply_m87BA7C578F96C8E49BB07088DAAC4649F83B0353_inline(L_16, L_17, NULL);
-		NullCheck(L_15);
-		Rigidbody_set_velocity_mE4031DF1C2C1CCE889F2AC9D8871D83795BB0D62(L_15, L_18, NULL);
+		Rigidbody_t268697F5A994213ED97393309870968BC1C7393C* L_47 = __this->___Rigid_7;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_48;
+		L_48 = Vector3_get_normalized_m736BBF65D5CDA7A18414370D15B4DFCC1E466F07_inline((&V_0), NULL);
+		float L_49 = V_1;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_50;
+		L_50 = Vector3_op_Multiply_m87BA7C578F96C8E49BB07088DAAC4649F83B0353_inline(L_48, L_49, NULL);
+		NullCheck(L_47);
+		Rigidbody_set_velocity_mE4031DF1C2C1CCE889F2AC9D8871D83795BB0D62(L_47, L_50, NULL);
 		// }
 		return;
 	}
@@ -2996,8 +3110,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ballCtrl__ctor_m806D7ADD39318ADA35016B3D
 	{
 		// float ballSpeed = 5.0f;         // ??????
 		__this->___ballSpeed_4 = (5.0f);
-		// float minSpeed = 10.0f;         // ????????
-		__this->___minSpeed_5 = (10.0f);
+		// float minSpeed = 8.0f;          // ????????
+		__this->___minSpeed_5 = (8.0f);
 		// float maxSpeed = 20.0f;
 		__this->___maxSpeed_6 = (20.0f);
 		MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E(__this, NULL);
